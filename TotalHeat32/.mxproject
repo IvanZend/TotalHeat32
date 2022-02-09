@@ -9,18 +9,18 @@ CDefines=USE_HAL_DRIVER;STM32F429xx;USE_HAL_DRIVER;USE_HAL_DRIVER;
 [PreviousGenFiles]
 AdvancedFolderStructure=true
 HeaderFileListSize=3
-HeaderFiles#0=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Inc/stm32f4xx_it.h
-HeaderFiles#1=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Inc/stm32f4xx_hal_conf.h
-HeaderFiles#2=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Inc/main.h
+HeaderFiles#0=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Inc/stm32f4xx_it.h
+HeaderFiles#1=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Inc/stm32f4xx_hal_conf.h
+HeaderFiles#2=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Inc/main.h
 HeaderFolderListSize=1
-HeaderPath#0=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Inc
+HeaderPath#0=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Inc
 HeaderFiles=;
 SourceFileListSize=4
-SourceFiles#0=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Src/stm32f4xx_it.c
-SourceFiles#1=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Src/stm32f4xx_hal_msp.c
-SourceFiles#2=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Src/stm32f4xx_hal_timebase_tim.c
-SourceFiles#3=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Src/main.c
+SourceFiles#0=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Src/stm32f4xx_it.c
+SourceFiles#1=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Src/stm32f4xx_hal_msp.c
+SourceFiles#2=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Src/stm32f4xx_hal_timebase_tim.c
+SourceFiles#3=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Src/main.c
 SourceFolderListSize=1
-SourcePath#0=D:/Ivan_B/Projects/white_ltdc_config/white_ltdc_config/Core/Src
+SourcePath#0=D:/Ivan_B/Projects/TotalHeat32/TotalHeat32/Core/Src
 SourceFiles=;
 
