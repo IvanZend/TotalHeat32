@@ -19,11 +19,11 @@ extern "C"
 {
 #endif
 
-/*
 void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer){
 	 uint32_t y,x,p=Xpos,c=0; //len=strlen((char*)bitmap);
-
+  /* Set the address */
   uint32_t  address = hltdc.LayerCfg[layer].FBStartAdress +  Ypos*X_SIZE*4;
+  /* Bypass the bitmap header */
   for(y=0;y<height;y++){
     //for(x=1;x<width+1;x++){
 		for(x=0;x<width;x++){
@@ -41,7 +41,6 @@ void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint1
   }
   return;
 }
-*/
 
 void test_output(void)
 {
