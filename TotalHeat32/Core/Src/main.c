@@ -103,6 +103,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  test_output();
+
   while (1)
   {
     /* USER CODE END WHILE */
