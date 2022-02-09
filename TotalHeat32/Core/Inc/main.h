@@ -32,7 +32,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "total_display.h"
+
+#include <total_display.hpp>
+
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

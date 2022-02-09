@@ -1,1 +1,1 @@
-total_display.c:10:6:test_output	4	static
+total_display.cpp:19:6:void test_output()	4	static
