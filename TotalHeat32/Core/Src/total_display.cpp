@@ -9,7 +9,7 @@
 #include <iostream>
 #include <cstring>
 
-//#include "Images/img_btn_timer_pause_rlsd.h"
+#include "Images/img_btn_timer_pause_rlsd.h"
 
 extern LTDC_HandleTypeDef hltdc;
 
@@ -44,9 +44,19 @@ void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint1
 
 void test_output(void)
 {
-	//HAL_LTDC_SetAddress(&hltdc,LCD_FRAME_BUFFER(LAYER_PAGE_0), 0);
+	HAL_LTDC_SetAddress(&hltdc,LCD_FRAME_BUFFER(LAYER_PAGE_0), 0);
 
-	//TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_0);
+	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_0);
+}
+
+void TFT_FillScreen(uint32_t color)
+{
+ uint32_t i;
+ uint32_t n = hltdc.LayerCfg[0].ImageHeight*hltdc.LayerCfg[0].ImageWidth;
+ for(i=0;i<n;i++)
+ {
+  *(uint32_t*) (hltdc.LayerCfg[0].FBStartAdress + (i*4)) = color;
+ }
 }
 
 #ifdef __cplusplus

@@ -32,6 +32,7 @@ uint8_t dataSize;
 
 	void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer);
 	void test_output(void);
+	void TFT_FillScreen(uint32_t color);
 
 #ifdef __cplusplus
 	}

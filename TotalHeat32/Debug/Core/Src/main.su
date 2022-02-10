@@ -1,8 +1,9 @@
 main.c:71:5:main	8	static
-main.c:118:6:SystemClock_Config	88	static
-main.c:162:13:MX_I2C2_Init	8	static
-main.c:208:13:MX_LTDC_Init	112	static
-main.c:290:13:MX_SPI6_Init	8	static
-main.c:328:13:MX_GPIO_Init	56	static
-main.c:374:6:HAL_TIM_PeriodElapsedCallback	16	static
-main.c:391:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:121:6:SystemClock_Config	88	static
+main.c:165:13:MX_LTDC_Init	112	static
+main.c:247:13:MX_SPI6_Init	8	static
+main.c:281:13:MX_FMC_Init	40	static
+main.c:332:13:MX_GPIO_Init	64	static
+main.c:369:6:delay_us	24	static,ignoring_inline_asm
+main.c:388:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:405:6:Error_Handler	4	static,ignoring_inline_asm
