@@ -106,7 +106,8 @@ int main(void)
 
   HAL_GPIO_WritePin(LTDC_PWM_GPIO_Port, LTDC_PWM_Pin, GPIO_PIN_SET);
   //TFT_FillScreen(0xFF000000);
-  test_output();
+  //test_output();
+  test_draw_all();
   while (1)
   {
     /* USER CODE END WHILE */

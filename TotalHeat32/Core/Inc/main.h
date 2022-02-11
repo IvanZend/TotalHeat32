@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include <total_display.hpp>
+#include <total_device.hpp>
 
 /* USER CODE END Includes */
 

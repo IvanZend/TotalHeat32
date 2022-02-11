@@ -1,0 +1,267 @@
+new:173:33:void* operator new(std::size_t, void*)	16	static
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+stl_vector.h:125:14:std::_Vector_base<int, std::allocator<int> >::_Vector_impl::~_Vector_impl()	16	static
+stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+total_device.cpp:26:6:void TFT_DrawBitmap_d(uint32_t, uint32_t, const uint8_t*, uint16_t, uint16_t, uint8_t)	56	static
+total_device.cpp:53:6:void TFT_FillScreen(uint32_t)	24	static
+total_device.cpp:226:6:void test_output()	16	static
+stl_vector.h:125:14:std::_Vector_base<ImageObj, std::allocator<ImageObj> >::_Vector_impl::~_Vector_impl()	16	static
+stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+total_device.cpp:286:1:Widget::Widget(Buttons_list)	16	static
+total_device.cpp:300:1:Widget::Widget(Buttons_list, uint16_t, uint16_t)	24	static
+total_device.cpp:314:1:Widget::Widget(Buttons_list, uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+total_device.cpp:327:6:void Widget::add_img_to_wgt(Img_vect_list, tImage)	48	static
+total_device.cpp:338:6:void Widget::add_img_to_wgt(Img_vect_list, tImage, uint16_t, uint16_t)	48	static
+total_device.cpp:348:6:void Widget::add_obj_to_wgt(Img_vect_list, ImageObj)	16	static
+total_device.cpp:379:6:void Widget::draw_img_vector(std::vector<ImageObj>, uint16_t, uint16_t)	56	static
+total_device.cpp:414:1:Touch_GT5688::Touch_GT5688()	16	static
+total_device.cpp:420:6:void Touch_GT5688::convert_16_bit_addr_to_8_bit_register(uint16_t, uint8_t*)	24	static
+total_device.cpp:426:9:uint8_t Touch_GT5688::i2c_write_read_register(uint16_t)	24	static
+total_device.cpp:441:6:void Touch_GT5688::i2c_write_addr_write_register(uint16_t, uint8_t)	24	static
+total_device.cpp:451:6:bool Touch_GT5688::touch_buffer_is_ready()	24	static
+stl_vector.h:125:14:std::_Vector_base<Widget, std::allocator<Widget> >::_Vector_impl::~_Vector_impl()	16	static
+stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:125:14:std::_Vector_base<tImage, std::allocator<tImage> >::_Vector_impl::~_Vector_impl()	16	static
+stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+total_device.cpp:504:1:TotalDisplay::TotalDisplay()	16	static
+total_device.cpp:520:6:void TotalDisplay::init_fonts_img_vect()	16	static
+total_device.cpp:241:7:Widget::~Widget()	16	static
+total_device.cpp:537:6:void TotalDisplay::init_widgets_content()	4288	static
+total_device.cpp:725:6:void TotalDisplay::init_widgets_size(std::vector<Widget>&)	32	static
+total_device.cpp:752:6:void TotalDisplay::draw_all_widgets(std::vector<Widget>&)	64	static
+total_device.cpp:766:6:void TotalDisplay::set_layer_for_widgets(std::vector<Widget>&, uint8_t)	32	static
+total_device.cpp:774:6:void TotalDisplay::set_all_widgets_active(std::vector<Widget>&, bool)	32	static
+total_device.cpp:782:6:void TotalDisplay::all_pages_write_to_memory()	16	static
+total_device.cpp:791:6:void Widget::set_rectangle_page_0()	48	static
+total_device.cpp:818:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
+total_device.cpp:833:6:void test_draw_all()	8	static
+stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = int]	16	static
+stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+stl_vector.h:675:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = int; _Alloc = std::allocator<int>]	24	static
+stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = ImageObj]	16	static
+stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:675:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_vector.h:1184:7:void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:915:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:1040:7:std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = Widget]	16	static
+stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:675:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = tImage]	16	static
+stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:675:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_vector.h:1184:7:void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:1184:7:void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:915:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:1040:7:std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:550:7:std::vector<_Tp, _Alloc>::vector(const std::vector<_Tp, _Alloc>&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	40	static
+allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = int]	16	static
+stl_vector.h:94:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+new_allocator.h:89:7:__gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = int]	16	static
+stl_vector.h:347:7:void std::_Vector_base<_Tp, _Alloc>::_M_deallocate(std::_Vector_base<_Tp, _Alloc>::pointer, std::size_t) [with _Tp = int; _Alloc = std::allocator<int>]	24	static
+stl_vector.h:273:7:std::_Vector_base<_Tp, _Alloc>::_Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
+stl_construct.h:203:5:void std::_Destroy(_ForwardIterator, _ForwardIterator, std::allocator<_T2>&) [with _ForwardIterator = int*; _Tp = int]	24	static
+allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = ImageObj]	16	static
+stl_vector.h:94:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+new_allocator.h:89:7:__gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = ImageObj]	16	static
+stl_vector.h:347:7:void std::_Vector_base<_Tp, _Alloc>::_M_deallocate(std::_Vector_base<_Tp, _Alloc>::pointer, std::size_t) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_vector.h:273:7:std::_Vector_base<_Tp, _Alloc>::_Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_construct.h:203:5:void std::_Destroy(_ForwardIterator, _ForwardIterator, std::allocator<_T2>&) [with _ForwardIterator = ImageObj*; _Tp = ImageObj]	24	static
+alloc_traits.h:482:2:) [with _Up = ImageObj; _Args = {const ImageObj&}; _Tp = ImageObj]	24	static
+stl_vector.h:826:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::end() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_vector.h:441:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_use_relocate() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:428:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_nothrow_relocate(std::true_type) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+vector.tcc:426:7:) [with _Args = {const ImageObj&}; _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	64	static
+allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = Widget]	16	static
+stl_vector.h:94:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+new_allocator.h:89:7:__gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = Widget]	16	static
+stl_vector.h:347:7:void std::_Vector_base<_Tp, _Alloc>::_M_deallocate(std::_Vector_base<_Tp, _Alloc>::pointer, std::size_t) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_vector.h:273:7:std::_Vector_base<_Tp, _Alloc>::_Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_construct.h:203:5:void std::_Destroy(_ForwardIterator, _ForwardIterator, std::allocator<_T2>&) [with _ForwardIterator = Widget*; _Tp = Widget]	24	static
+allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = tImage]	16	static
+stl_vector.h:94:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+new_allocator.h:89:7:__gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = tImage]	16	static
+stl_vector.h:347:7:void std::_Vector_base<_Tp, _Alloc>::_M_deallocate(std::_Vector_base<_Tp, _Alloc>::pointer, std::size_t) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_vector.h:273:7:std::_Vector_base<_Tp, _Alloc>::_Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_construct.h:203:5:void std::_Destroy(_ForwardIterator, _ForwardIterator, std::allocator<_T2>&) [with _ForwardIterator = tImage*; _Tp = tImage]	24	static
+alloc_traits.h:482:2:) [with _Up = tImage; _Args = {const tImage&}; _Tp = tImage]	24	static
+stl_vector.h:826:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::end() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_vector.h:441:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_use_relocate() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:428:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_nothrow_relocate(std::true_type) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+vector.tcc:426:7:) [with _Args = {const tImage&}; _Tp = tImage; _Alloc = std::allocator<tImage>]	64	static
+alloc_traits.h:482:2:) [with _Up = Widget; _Args = {const Widget&}; _Tp = Widget]	24	static
+stl_vector.h:826:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::end() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_vector.h:441:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_use_relocate() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:428:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_nothrow_relocate(std::true_type) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+vector.tcc:426:7:) [with _Args = {const Widget&}; _Tp = Widget; _Alloc = std::allocator<Widget>]	64	static
+alloc_traits.h:97:19:static _Alloc __gnu_cxx::__alloc_traits<_Alloc, <template-parameter-1-2> >::_S_select_on_copy(const _Alloc&) [with _Alloc = std::allocator<ImageObj>; <template-parameter-1-2> = ImageObj]	16	static
+stl_vector.h:277:7:const _Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:300:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::size_t, const allocator_type&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_vector.h:817:7:std::vector<_Tp, _Alloc>::const_iterator std::vector<_Tp, _Alloc>::begin() const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_vector.h:835:7:std::vector<_Tp, _Alloc>::const_iterator std::vector<_Tp, _Alloc>::end() const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_uninitialized.h:305:5:_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >; _ForwardIterator = ImageObj*; _Tp = ImageObj]	24	static
+new_allocator.h:80:7:__gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = int]	16	static
+alloc_traits.h:469:7:static void std::allocator_traits<std::allocator<_CharT> >::deallocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::pointer, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = int]	24	static
+stl_construct.h:127:5:void std::_Destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = int*]	16	static
+new_allocator.h:80:7:__gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = ImageObj]	16	static
+alloc_traits.h:469:7:static void std::allocator_traits<std::allocator<_CharT> >::deallocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::pointer, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = ImageObj]	24	static
+stl_construct.h:127:5:void std::_Destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = ImageObj*]	16	static
+move.h:74:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = const ImageObj&]	16	static
+new_allocator.h:144:2:) [with _Up = ImageObj; _Args = {const ImageObj&}; _Tp = ImageObj]	32	static
+stl_iterator.h:806:7:__gnu_cxx::__normal_iterator<_Iterator, _Container>::__normal_iterator(const _Iterator&) [with _Iterator = ImageObj*; _Container = std::vector<ImageObj>]	16	static
+stl_vector.h:1753:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_M_check_len(std::vector<_Tp, _Alloc>::size_type, const char*) const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	40	static
+stl_vector.h:808:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::begin() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_iterator.h:989:5:typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&) [with _Iterator = ImageObj*; _Container = std::vector<ImageObj>]	24	static
+stl_vector.h:340:7:std::_Vector_base<_Tp, _Alloc>::pointer std::_Vector_base<_Tp, _Alloc>::_M_allocate(std::size_t) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:462:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	48	static
+stl_iterator.h:871:7:const _Iterator& __gnu_cxx::__normal_iterator<_Iterator, _Container>::base() const [with _Iterator = ImageObj*; _Container = std::vector<ImageObj>]	16	static
+stl_uninitialized.h:323:5:_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = ImageObj*; _ForwardIterator = ImageObj*; _Allocator = std::allocator<ImageObj>]	32	static
+new_allocator.h:80:7:__gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = Widget]	16	static
+alloc_traits.h:469:7:static void std::allocator_traits<std::allocator<_CharT> >::deallocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::pointer, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = Widget]	24	static
+stl_construct.h:127:5:void std::_Destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = Widget*]	16	static
+new_allocator.h:80:7:__gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = tImage]	16	static
+alloc_traits.h:469:7:static void std::allocator_traits<std::allocator<_CharT> >::deallocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::pointer, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = tImage]	24	static
+stl_construct.h:127:5:void std::_Destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = tImage*]	16	static
+move.h:74:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = const tImage&]	16	static
+new_allocator.h:144:2:) [with _Up = tImage; _Args = {const tImage&}; _Tp = tImage]	32	static
+stl_iterator.h:806:7:__gnu_cxx::__normal_iterator<_Iterator, _Container>::__normal_iterator(const _Iterator&) [with _Iterator = tImage*; _Container = std::vector<tImage>]	16	static
+stl_vector.h:1753:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_M_check_len(std::vector<_Tp, _Alloc>::size_type, const char*) const [with _Tp = tImage; _Alloc = std::allocator<tImage>]	40	static
+stl_vector.h:808:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::begin() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_iterator.h:989:5:typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&) [with _Iterator = tImage*; _Container = std::vector<tImage>]	24	static
+stl_vector.h:340:7:std::_Vector_base<_Tp, _Alloc>::pointer std::_Vector_base<_Tp, _Alloc>::_M_allocate(std::size_t) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:462:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	48	static
+stl_iterator.h:871:7:const _Iterator& __gnu_cxx::__normal_iterator<_Iterator, _Container>::base() const [with _Iterator = tImage*; _Container = std::vector<tImage>]	16	static
+stl_uninitialized.h:323:5:_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = tImage*; _ForwardIterator = tImage*; _Allocator = std::allocator<tImage>]	32	static
+move.h:74:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = const Widget&]	16	static
+total_device.cpp:241:7:Widget::Widget(const Widget&)	16	static
+new_allocator.h:144:2:) [with _Up = Widget; _Args = {const Widget&}; _Tp = Widget]	32	static
+stl_iterator.h:806:7:__gnu_cxx::__normal_iterator<_Iterator, _Container>::__normal_iterator(const _Iterator&) [with _Iterator = Widget*; _Container = std::vector<Widget>]	16	static
+stl_vector.h:1753:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_M_check_len(std::vector<_Tp, _Alloc>::size_type, const char*) const [with _Tp = Widget; _Alloc = std::allocator<Widget>]	40	static
+stl_vector.h:808:7:std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::begin() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_iterator.h:989:5:typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&) [with _Iterator = Widget*; _Container = std::vector<Widget>]	24	static
+stl_vector.h:340:7:std::_Vector_base<_Tp, _Alloc>::pointer std::_Vector_base<_Tp, _Alloc>::_M_allocate(std::size_t) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+stl_vector.h:462:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	48	static
+stl_iterator.h:871:7:const _Iterator& __gnu_cxx::__normal_iterator<_Iterator, _Container>::base() const [with _Iterator = Widget*; _Container = std::vector<Widget>]	16	static
+stl_uninitialized.h:323:5:_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = Widget*; _ForwardIterator = Widget*; _Allocator = std::allocator<Widget>]	32	static
+alloc_traits.h:495:2:static void std::allocator_traits<std::allocator<_CharT> >::destroy(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, _Up*) [with _Up = Widget; _Tp = Widget]	16	static
+alloc_traits.h:514:7:static std::allocator_traits<std::allocator<_CharT> >::allocator_type std::allocator_traits<std::allocator<_CharT> >::select_on_container_copy_construction(const allocator_type&) [with _Tp = ImageObj]	16	static
+allocator.h:141:7:std::allocator< <template-parameter-1-1> >::allocator(const std::allocator< <template-parameter-1-1> >&) [with _Tp = ImageObj]	16	static
+stl_vector.h:133:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl(const _Tp_alloc_type&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:356:7:void std::_Vector_base<_Tp, _Alloc>::_M_create_storage(std::size_t) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_iterator.h:806:7:__gnu_cxx::__normal_iterator<_Iterator, _Container>::__normal_iterator(const _Iterator&) [with _Iterator = const ImageObj*; _Container = std::vector<ImageObj>]	16	static
+stl_uninitialized.h:115:5:_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >; _ForwardIterator = ImageObj*]	32	static
+new_allocator.h:119:7:void __gnu_cxx::new_allocator<_Tp>::deallocate(__gnu_cxx::new_allocator<_Tp>::pointer, __gnu_cxx::new_allocator<_Tp>::size_type) [with _Tp = int]	24	static
+stl_construct.h:117:9:static void std::_Destroy_aux<true>::__destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = int*]	16	static
+new_allocator.h:119:7:void __gnu_cxx::new_allocator<_Tp>::deallocate(__gnu_cxx::new_allocator<_Tp>::pointer, __gnu_cxx::new_allocator<_Tp>::size_type) [with _Tp = ImageObj]	24	static
+stl_construct.h:117:9:static void std::_Destroy_aux<true>::__destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = ImageObj*]	16	static
+stl_vector.h:920:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::max_size() const [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_algobase.h:222:5:constexpr const _Tp& std::max(const _Tp&, const _Tp&) [with _Tp = unsigned int]	16	static
+alloc_traits.h:443:7:static _Tp* std::allocator_traits<std::allocator<_CharT> >::allocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = ImageObj]	16	static
+stl_vector.h:450:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_do_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&, std::true_type) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_iterator.h:1242:5:_ReturnType std::__make_move_if_noexcept_iterator(_Tp*) [with _Tp = ImageObj; _ReturnType = std::move_iterator<ImageObj*>]	24	static
+stl_uninitialized.h:305:5:_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = std::move_iterator<ImageObj*>; _ForwardIterator = ImageObj*; _Tp = ImageObj]	24	static
+new_allocator.h:119:7:void __gnu_cxx::new_allocator<_Tp>::deallocate(__gnu_cxx::new_allocator<_Tp>::pointer, __gnu_cxx::new_allocator<_Tp>::size_type) [with _Tp = Widget]	24	static
+stl_construct.h:105:9:static void std::_Destroy_aux<<anonymous> >::__destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = Widget*; bool <anonymous> = false]	16	static
+new_allocator.h:119:7:void __gnu_cxx::new_allocator<_Tp>::deallocate(__gnu_cxx::new_allocator<_Tp>::pointer, __gnu_cxx::new_allocator<_Tp>::size_type) [with _Tp = tImage]	24	static
+stl_construct.h:117:9:static void std::_Destroy_aux<true>::__destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = tImage*]	16	static
+stl_vector.h:920:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::max_size() const [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+stl_vector.h:915:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+alloc_traits.h:443:7:static _Tp* std::allocator_traits<std::allocator<_CharT> >::allocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = tImage]	16	static
+stl_vector.h:450:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_do_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&, std::true_type) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_iterator.h:1242:5:_ReturnType std::__make_move_if_noexcept_iterator(_Tp*) [with _Tp = tImage; _ReturnType = std::move_iterator<tImage*>]	24	static
+stl_uninitialized.h:305:5:_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = std::move_iterator<tImage*>; _ForwardIterator = tImage*; _Tp = tImage]	24	static
+stl_vector.h:920:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::max_size() const [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+alloc_traits.h:443:7:static _Tp* std::allocator_traits<std::allocator<_CharT> >::allocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = Widget]	16	static
+stl_vector.h:450:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Alloc>::_S_do_relocate(std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::pointer, std::vector<_Tp, _Alloc>::_Tp_alloc_type&, std::true_type) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_iterator.h:1242:5:_ReturnType std::__make_move_if_noexcept_iterator(_Tp*) [with _Tp = Widget; _ReturnType = std::move_iterator<Widget*>]	24	static
+stl_uninitialized.h:305:5:_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = std::move_iterator<Widget*>; _ForwardIterator = Widget*; _Tp = Widget]	24	static
+new_allocator.h:151:2:void __gnu_cxx::new_allocator<_Tp>::destroy(_Up*) [with _Up = Widget; _Tp = Widget]	16	static
+new_allocator.h:83:7:__gnu_cxx::new_allocator<_Tp>::new_allocator(const __gnu_cxx::new_allocator<_Tp>&) [with _Tp = ImageObj]	16	static
+stl_uninitialized.h:99:9:static _ForwardIterator std::__uninitialized_copy<true>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >; _ForwardIterator = ImageObj*]	24	static
+stl_vector.h:1773:7:static std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_S_max_size(const _Tp_alloc_type&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+new_allocator.h:102:7:_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(__gnu_cxx::new_allocator<_Tp>::size_type, const void*) [with _Tp = ImageObj]	24	static
+stl_uninitialized.h:958:5:_ForwardIterator std::__relocate_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = ImageObj*; _ForwardIterator = ImageObj*; _Allocator = std::allocator<ImageObj>]	32	static
+stl_iterator.h:1057:7:std::move_iterator<_Iterator>::move_iterator(std::move_iterator<_Iterator>::iterator_type) [with _Iterator = ImageObj*]	16	static
+stl_uninitialized.h:115:5:_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<ImageObj*>; _ForwardIterator = ImageObj*]	32	static
+move.h:47:5:constexpr _Tp* std::__addressof(_Tp&) [with _Tp = Widget]	16	static
+stl_construct.h:97:5:void std::_Destroy(_Tp*) [with _Tp = Widget]	16	static
+stl_vector.h:1773:7:static std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_S_max_size(const _Tp_alloc_type&) [with _Tp = tImage; _Alloc = std::allocator<tImage>]	24	static
+stl_vector.h:277:7:const _Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() const [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
+new_allocator.h:102:7:_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(__gnu_cxx::new_allocator<_Tp>::size_type, const void*) [with _Tp = tImage]	24	static
+stl_uninitialized.h:958:5:_ForwardIterator std::__relocate_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = tImage*; _ForwardIterator = tImage*; _Allocator = std::allocator<tImage>]	32	static
+stl_iterator.h:1057:7:std::move_iterator<_Iterator>::move_iterator(std::move_iterator<_Iterator>::iterator_type) [with _Iterator = tImage*]	16	static
+stl_uninitialized.h:115:5:_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<tImage*>; _ForwardIterator = tImage*]	32	static
+stl_vector.h:1773:7:static std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_S_max_size(const _Tp_alloc_type&) [with _Tp = Widget; _Alloc = std::allocator<Widget>]	24	static
+stl_vector.h:277:7:const _Tp_alloc_type& std::_Vector_base<_Tp, _Alloc>::_M_get_Tp_allocator() const [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
+new_allocator.h:102:7:_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(__gnu_cxx::new_allocator<_Tp>::size_type, const void*) [with _Tp = Widget]	24	static
+stl_uninitialized.h:958:5:_ForwardIterator std::__relocate_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = Widget*; _ForwardIterator = Widget*; _Allocator = std::allocator<Widget>]	32	static
+stl_iterator.h:1057:7:std::move_iterator<_Iterator>::move_iterator(std::move_iterator<_Iterator>::iterator_type) [with _Iterator = Widget*]	16	static
+stl_uninitialized.h:115:5:_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<Widget*>; _ForwardIterator = Widget*]	32	static
+stl_algobase.h:465:5:_OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >; _OI = ImageObj*]	32	static
+alloc_traits.h:505:7:static std::allocator_traits<std::allocator<_CharT> >::size_type std::allocator_traits<std::allocator<_CharT> >::max_size(const allocator_type&) [with _Tp = ImageObj]	16	static
+stl_algobase.h:198:5:constexpr const _Tp& std::min(const _Tp&, const _Tp&) [with _Tp = unsigned int]	16	static
+new_allocator.h:132:7:__gnu_cxx::new_allocator<_Tp>::size_type __gnu_cxx::new_allocator<_Tp>::max_size() const [with _Tp = ImageObj]	16	static
+stl_algobase.h:280:5:_Iterator std::__niter_base(_Iterator) [with _Iterator = ImageObj*]	16	static
+stl_uninitialized.h:924:5:std::__enable_if_t<std::__is_bitwise_relocatable<_Tp>::value, _Tp*> std::__relocate_a_1(_Tp*, _Tp*, _Tp*, std::allocator<_T2>&) [with _Tp = ImageObj; _Up = ImageObj]	32	static
+stl_uninitialized.h:99:9:static _ForwardIterator std::__uninitialized_copy<true>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<ImageObj*>; _ForwardIterator = ImageObj*]	24	static
+alloc_traits.h:505:7:static std::allocator_traits<std::allocator<_CharT> >::size_type std::allocator_traits<std::allocator<_CharT> >::max_size(const allocator_type&) [with _Tp = tImage]	16	static
+new_allocator.h:132:7:__gnu_cxx::new_allocator<_Tp>::size_type __gnu_cxx::new_allocator<_Tp>::max_size() const [with _Tp = tImage]	16	static
+stl_algobase.h:280:5:_Iterator std::__niter_base(_Iterator) [with _Iterator = tImage*]	16	static
+stl_uninitialized.h:924:5:std::__enable_if_t<std::__is_bitwise_relocatable<_Tp>::value, _Tp*> std::__relocate_a_1(_Tp*, _Tp*, _Tp*, std::allocator<_T2>&) [with _Tp = tImage; _Up = tImage]	32	static
+stl_uninitialized.h:99:9:static _ForwardIterator std::__uninitialized_copy<true>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<tImage*>; _ForwardIterator = tImage*]	24	static
+alloc_traits.h:505:7:static std::allocator_traits<std::allocator<_CharT> >::size_type std::allocator_traits<std::allocator<_CharT> >::max_size(const allocator_type&) [with _Tp = Widget]	16	static
+new_allocator.h:132:7:__gnu_cxx::new_allocator<_Tp>::size_type __gnu_cxx::new_allocator<_Tp>::max_size() const [with _Tp = Widget]	16	static
+stl_algobase.h:280:5:_Iterator std::__niter_base(_Iterator) [with _Iterator = Widget*]	16	static
+stl_uninitialized.h:936:5:_ForwardIterator std::__relocate_a_1(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = Widget*; _ForwardIterator = Widget*; _Allocator = std::allocator<Widget>]	40	static
+stl_uninitialized.h:76:9:static _ForwardIterator std::__uninitialized_copy<_TrivialValueTypes>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<Widget*>; _ForwardIterator = Widget*; bool _TrivialValueTypes = false]	40	static
+cpp_type_traits.h:428:5:_Iterator std::__miter_base(_Iterator) [with _Iterator = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >]	16	static
+stl_algobase.h:438:5:_OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const ImageObj*, std::vector<ImageObj> >; _OI = ImageObj*]	32	static
+stl_algobase.h:465:5:_OI std::copy(_II, _II, _OI) [with _II = std::move_iterator<ImageObj*>; _OI = ImageObj*]	32	static
+stl_algobase.h:465:5:_OI std::copy(_II, _II, _OI) [with _II = std::move_iterator<tImage*>; _OI = tImage*]	32	static
+stl_uninitialized.h:905:5:void std::__relocate_object_a(_Tp*, _Up*, _Allocator&) [with _Tp = Widget; _Up = Widget; _Allocator = std::allocator<Widget>]	24	static
+stl_iterator.h:1157:5:bool std::operator!=(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&) [with _Iterator = Widget*]	16	static
+stl_iterator.h:1078:7:std::move_iterator<_Iterator>& std::move_iterator<_Iterator>::operator++() [with _Iterator = Widget*]	16	static
+stl_iterator.h:1070:7:std::move_iterator<_Iterator>::reference std::move_iterator<_Iterator>::operator*() const [with _Iterator = Widget*]	16	static
+stl_vector.h:305:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::_Vector_base<_Tp, _Alloc>&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_vector.h:569:7:std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+total_device.cpp:241:7:Widget::Widget(Widget&&)	16	static
+stl_construct.h:74:5:) [with _T1 = Widget; _Args = {Widget}]	24	static
+stl_iterator.h:1010:5:_Iterator std::__niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container>) [with _Iterator = const ImageObj*; _Container = std::vector<ImageObj>]	16	static
+stl_algobase.h:393:5:_OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = const ImageObj*; _OI = ImageObj*]	32	static
+stl_algobase.h:295:5:_Iterator std::__niter_wrap(const _Iterator&, _Iterator) [with _Iterator = ImageObj*]	16	static
+stl_iterator.h:1262:5:base())) std::__miter_base(std::move_iterator<_IteratorL>) [with _Iterator = ImageObj*]	16	static
+stl_algobase.h:438:5:_OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = true; _II = ImageObj*; _OI = ImageObj*]	32	static
+stl_iterator.h:1262:5:base())) std::__miter_base(std::move_iterator<_IteratorL>) [with _Iterator = tImage*]	16	static
+stl_algobase.h:438:5:_OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = true; _II = tImage*; _OI = tImage*]	32	static
+move.h:99:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = Widget&]	16	static
+alloc_traits.h:482:2:) [with _Up = Widget; _Args = {Widget}; _Tp = Widget]	24	static
+stl_iterator.h:1145:5:bool std::operator==(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&) [with _Iterator = Widget*]	24	static
+move.h:74:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = Widget]	16	static
+stl_vector.h:140:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl(std::_Vector_base<_Tp, _Alloc>::_Vector_impl&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	24	static
+stl_iterator.h:871:7:const _Iterator& __gnu_cxx::__normal_iterator<_Iterator, _Container>::base() const [with _Iterator = const ImageObj*; _Container = std::vector<ImageObj>]	16	static
+stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = ImageObj; bool _IsMove = false]	32	static
+stl_iterator.h:1066:7:std::move_iterator<_Iterator>::iterator_type std::move_iterator<_Iterator>::base() const [with _Iterator = ImageObj*]	16	static
+cpp_type_traits.h:428:5:_Iterator std::__miter_base(_Iterator) [with _Iterator = ImageObj*]	16	static
+stl_algobase.h:393:5:_OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = true; _II = ImageObj*; _OI = ImageObj*]	32	static
+stl_iterator.h:1066:7:std::move_iterator<_Iterator>::iterator_type std::move_iterator<_Iterator>::base() const [with _Iterator = tImage*]	16	static
+cpp_type_traits.h:428:5:_Iterator std::__miter_base(_Iterator) [with _Iterator = tImage*]	16	static
+stl_algobase.h:393:5:_OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = true; _II = tImage*; _OI = tImage*]	32	static
+stl_algobase.h:295:5:_Iterator std::__niter_wrap(const _Iterator&, _Iterator) [with _Iterator = tImage*]	16	static
+new_allocator.h:144:2:) [with _Up = Widget; _Args = {Widget}; _Tp = Widget]	32	static
+stl_iterator.h:1066:7:std::move_iterator<_Iterator>::iterator_type std::move_iterator<_Iterator>::base() const [with _Iterator = Widget*]	16	static
+move.h:99:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = std::_Vector_base<ImageObj, std::allocator<ImageObj> >::_Vector_impl&]	16	static
+stl_vector.h:99:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data(std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
+stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = ImageObj; bool _IsMove = true]	32	static
+stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = tImage; bool _IsMove = true]	32	static
+total_device.cpp:460:7:TotalDisplay::~TotalDisplay()	16	static
+total_device.cpp:839:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_device.cpp:839:1:cpp)	8	static
+total_device.cpp:839:1:cpp)	8	static
