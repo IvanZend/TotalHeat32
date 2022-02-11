@@ -47,6 +47,13 @@ void test_output(void)
 	HAL_LTDC_SetAddress(&hltdc,LCD_FRAME_BUFFER(LAYER_PAGE_0), 0);
 
 	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_0);
+
+	/*
+	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_1);
+	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_2);
+	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_3);
+	TFT_DrawBitmap_d(0, 0, img_btn_timer_pause_rlsd.data, img_btn_timer_pause_rlsd.width, img_btn_timer_pause_rlsd.height, LAYER_PAGE_4);
+	*/
 }
 
 void TFT_FillScreen(uint32_t color)

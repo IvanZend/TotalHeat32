@@ -1,7 +1,7 @@
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 total_display.cpp:22:6:void TFT_DrawBitmap_d(uint32_t, uint32_t, const uint8_t*, uint16_t, uint16_t, uint8_t)	48	static
 total_display.cpp:45:6:void test_output()	16	static
-total_display.cpp:52:6:void TFT_FillScreen(uint32_t)	24	static
-total_display.cpp:63:1:void __static_initialization_and_destruction_0(int, int)	16	static
-total_display.cpp:63:1:cpp)	8	static
-total_display.cpp:63:1:cpp)	8	static
+total_display.cpp:59:6:void TFT_FillScreen(uint32_t)	24	static
+total_display.cpp:70:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_display.cpp:70:1:cpp)	8	static
+total_display.cpp:70:1:cpp)	8	static

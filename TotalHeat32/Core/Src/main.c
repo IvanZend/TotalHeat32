@@ -41,8 +41,6 @@
 /* Private variables ---------------------------------------------------------*/
 LTDC_HandleTypeDef hltdc;
 
-SPI_HandleTypeDef hspi6;
-
 SDRAM_HandleTypeDef hsdram1;
 
 /* USER CODE BEGIN PV */
@@ -52,7 +50,6 @@ SDRAM_HandleTypeDef hsdram1;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_SPI6_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_FMC_Init(void);
 /* USER CODE BEGIN PFP */
@@ -92,7 +89,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI6_Init();
   MX_LTDC_Init();
   MX_FMC_Init();
   /* USER CODE BEGIN 2 */
@@ -102,9 +98,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   w9812g6_init(&hsdram1);
+
+  for(uint8_t i=0; i<MAX_LAYER;i++)
+  {
+	  HAL_LTDC_SetAddress(&hltdc,LCD_FRAME_BUFFER(i), i);
+  }
+
   HAL_GPIO_WritePin(LTDC_PWM_GPIO_Port, LTDC_PWM_Pin, GPIO_PIN_SET);
-  TFT_FillScreen(0xFF000000);
-  //test_output();
+  //TFT_FillScreen(0xFF000000);
+  test_output();
   while (1)
   {
     /* USER CODE END WHILE */
@@ -170,7 +172,6 @@ static void MX_LTDC_Init(void)
   /* USER CODE END LTDC_Init 0 */
 
   LTDC_LayerCfgTypeDef pLayerCfg = {0};
-  LTDC_LayerCfgTypeDef pLayerCfg1 = {0};
 
   /* USER CODE BEGIN LTDC_Init 1 */
 
@@ -214,66 +215,57 @@ static void MX_LTDC_Init(void)
   {
     Error_Handler();
   }
-  pLayerCfg1.WindowX0 = 0;
-  pLayerCfg1.WindowX1 = 0;
-  pLayerCfg1.WindowY0 = 0;
-  pLayerCfg1.WindowY1 = 0;
-  pLayerCfg1.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
-  pLayerCfg1.Alpha = 0;
-  pLayerCfg1.Alpha0 = 0;
-  pLayerCfg1.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
-  pLayerCfg1.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
-  pLayerCfg1.FBStartAdress = 0;
-  pLayerCfg1.ImageWidth = 0;
-  pLayerCfg1.ImageHeight = 0;
-  pLayerCfg1.Backcolor.Blue = 0;
-  pLayerCfg1.Backcolor.Green = 0;
-  pLayerCfg1.Backcolor.Red = 0;
-  if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg1, 1) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN LTDC_Init 2 */
+  hltdc.Instance = LTDC;
+  hltdc.Init.HSPolarity = LTDC_HSPOLARITY_AL;
+  hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
+  hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
+  hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
 
-  /* USER CODE END LTDC_Init 2 */
+  const int Horizontal_Synchronization_Width      = 48;//Horizontal Synchronization Width must be between 1 pixels and 4.095 Kpixels.
+  const int Horizontal_Back_Porch	                =	88;// 	Horizontal Back Porch must be between 0 pixels and 4.095 Kpixels.
+  const int Horizontal_Front_Porch                = 40;//    Horizontal Front Porch must be between 0 pixels and 4.095 Kpixels.
+  const int Vertical_Synchronization_Height       = 3;//		  Vertical Synchronization Height must be between 1 lines and 2.047 Klines.
+  const int Vertical_Back_Porch                   = 32;// 		Vertical Back Porch must be between 0 lines and 2.047 Klines.
+  const int Vertical_Front_Porch                  = 13;//		Vertical Front Porch must be between 0 lines and 2.047 Klines.
 
-}
-
-/**
-  * @brief SPI6 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_SPI6_Init(void)
-{
-
-  /* USER CODE BEGIN SPI6_Init 0 */
-
-  /* USER CODE END SPI6_Init 0 */
-
-  /* USER CODE BEGIN SPI6_Init 1 */
-
-  /* USER CODE END SPI6_Init 1 */
-  /* SPI6 parameter configuration*/
-  hspi6.Instance = SPI6;
-  hspi6.Init.Mode = SPI_MODE_MASTER;
-  hspi6.Init.Direction = SPI_DIRECTION_1LINE;
-  hspi6.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi6.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi6.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi6.Init.NSS = SPI_NSS_SOFT;
-  hspi6.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi6.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi6.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi6.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi6.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi6) != HAL_OK)
+  hltdc.Init.HorizontalSync = Horizontal_Synchronization_Width-1;//127;      //This register value is equal to (Horizontal Synchronization Width - 1)
+  hltdc.Init.VerticalSync = Vertical_Synchronization_Height-1;          //This register value is equal to (Vertical Synchronization Width - 1)
+  hltdc.Init.AccumulatedHBP = Horizontal_Synchronization_Width+Horizontal_Back_Porch-1;      //This register value is equal to the (Horizontal Synchronization Width + Horizontal Back Porch - 1)
+  hltdc.Init.AccumulatedVBP = Vertical_Synchronization_Height+Vertical_Back_Porch-1;       //This register value is equal to the (Vertical Synchronization Width + Vertical Back Porch - 1)
+  hltdc.Init.AccumulatedActiveW = MX_DISPLAY_WIDTH+Horizontal_Synchronization_Width+Horizontal_Back_Porch-1; //This register value is equal to (Horizontal Synchronization Width + Horizontal Back Porch + Active Width - 1)
+  hltdc.Init.AccumulatedActiveH = MX_DISPLAY_HEIGHT+Vertical_Synchronization_Height+Vertical_Back_Porch-1;  //This register value is equal to the (Vertical Synchronization Width + Vertical Back Porch + Active Height - 1)
+  hltdc.Init.TotalWidth = MX_DISPLAY_WIDTH+Horizontal_Synchronization_Width+Horizontal_Back_Porch+Horizontal_Front_Porch-1;          //This register value is equal to (Horizontal Synchronization Width + Horizontal Back Porch + Active Width + Horizontal Front Porch - 1)
+  hltdc.Init.TotalHeigh = MX_DISPLAY_HEIGHT+Vertical_Synchronization_Height+Vertical_Back_Porch+Vertical_Front_Porch-1;          //This register value is equal to the (Vertical Synchronization Width + Vertical Back Porch + Active Height + Vertical Front Porch - 1)
+  hltdc.Init.Backcolor.Blue = 0;
+  hltdc.Init.Backcolor.Green = 0;
+  hltdc.Init.Backcolor.Red = 0;
+  if (HAL_LTDC_Init(&hltdc) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN SPI6_Init 2 */
-
-  /* USER CODE END SPI6_Init 2 */
+  for(int n=0;n<MAX_LAYER;n++){
+	  pLayerCfg.WindowX0 = 0;
+	  pLayerCfg.WindowX1 = n==0?MX_DISPLAY_WIDTH:0;
+	  pLayerCfg.WindowY0 = 0;
+	  pLayerCfg.WindowY1 = n==0?MX_DISPLAY_HEIGHT:0;
+	  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+	  pLayerCfg.Alpha = 255;
+	  pLayerCfg.Alpha0 = 0;
+	  pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
+	  pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA;
+	  pLayerCfg.FBStartAdress = LCD_FRAME_BUFFER(n);
+	  pLayerCfg.ImageWidth = MX_DISPLAY_WIDTH;
+	  pLayerCfg.ImageHeight = MX_DISPLAY_HEIGHT;
+	  pLayerCfg.Backcolor.Blue = 0;
+	  pLayerCfg.Backcolor.Green = 0;
+	  pLayerCfg.Backcolor.Red = 0;
+	  if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, n) != HAL_OK)
+	  {
+		Error_Handler();
+	  }
+  }
+  /* USER CODE END LTDC_Init 2 */
 
 }
 

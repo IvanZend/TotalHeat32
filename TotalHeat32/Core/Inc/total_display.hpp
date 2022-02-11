@@ -22,8 +22,15 @@ uint8_t dataSize;
 
 #define LCD_FRAME_BUFFER(N) ((uint32_t)(0xC0000000 + (N)*0x1D4C00))
 #define LAYER_PAGE_0		0
+#define LAYER_PAGE_1		1
+#define LAYER_PAGE_2		2
+#define LAYER_PAGE_3		3
+#define LAYER_PAGE_4		4
 #define X_SIZE	 800
 #define Y_SIZE	 480
+
+#define MX_DISPLAY_WIDTH  X_SIZE
+#define MX_DISPLAY_HEIGHT Y_SIZE
 
 #ifdef __cplusplus
 	extern "C"
