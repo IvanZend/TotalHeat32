@@ -35,7 +35,6 @@ extern "C" {
 
 #include <total_display.hpp>
 
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

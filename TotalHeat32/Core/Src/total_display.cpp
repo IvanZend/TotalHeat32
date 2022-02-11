@@ -9,15 +9,20 @@
 #include <iostream>
 #include <cstring>
 
+#include <vector>
+
 #include "Images/img_btn_timer_pause_rlsd.h"
 
 extern LTDC_HandleTypeDef hltdc;
+
 
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+using namespace std;
 
 void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer){
 	 uint32_t y,x,p=Xpos,c=0; //len=strlen((char*)bitmap);
@@ -39,6 +44,8 @@ void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint1
     }
 	p=p+X_SIZE-1;
   }
+
+  vector<int> constant_images;
   return;
 }
 

@@ -9,6 +9,8 @@
 #define INC_TOTAL_DISPLAY_HPP_
 
 #include "stm32f4xx_hal.h"
+//#include "total_device.hpp"
+
 
 typedef struct
 {
@@ -26,8 +28,8 @@ uint8_t dataSize;
 #define LAYER_PAGE_2		2
 #define LAYER_PAGE_3		3
 #define LAYER_PAGE_4		4
-#define X_SIZE	 800
-#define Y_SIZE	 480
+#define X_SIZE	 			800
+#define Y_SIZE	 			480
 
 #define MX_DISPLAY_WIDTH  X_SIZE
 #define MX_DISPLAY_HEIGHT Y_SIZE
@@ -36,6 +38,8 @@ uint8_t dataSize;
 	extern "C"
 	{
 #endif
+
+
 
 	void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer);
 	void test_output(void);
