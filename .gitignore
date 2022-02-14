@@ -38,3 +38,9 @@
 *.su
 *.su
 *.su
+*.su
+*.bin
+*.elf
+*.list
+*.map
+*.ioc
