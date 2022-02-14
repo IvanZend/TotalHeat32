@@ -265,9 +265,9 @@ class Widget
 
     void set_rectangle_page_0(void);
     void tile_area(tImage image_to_tile, uint16_t area_width, uint16_t area_hight);
-    /*
     void change_image_in_widget(tImage image_to_output);
     void change_image_in_widget(tImage image_to_output, uint16_t img_out_coord_x, uint16_t img_out_coord_y);            // изменить изображение изменить изображение в виджете
+    /*
     uint16_t img_center_x(tImage img_to_center);                                // получить координату для размещения изображения в центре виджета
     void lock_button(void);                 // заблокировать кнопку
     void unlock_button(void);               // разблокировать кнопку
@@ -788,6 +788,26 @@ void TotalDisplay::all_pages_write_to_memory(void)
     //main_device.stop_temper();
 }
 
+bool colon_is_active;
+
+void TotalDisplay::colon_blink(void)
+{
+    if (colon_is_active)
+    {
+        start_page[43].change_image_in_widget(img_no_colon);
+        colon_is_active = false;
+        //main_device.colon_is_active = false;
+
+    }
+    else
+    {
+        start_page[43].change_image_in_widget(img_colon);
+        colon_is_active = true;
+        //main_device.colon_is_active = true;
+
+    }
+}
+
 void Widget::set_rectangle_page_0(void)
 {
     for (int i = 0; i < 43; i++)                                    // вертикальная правая
@@ -828,11 +848,33 @@ void Widget::tile_area(tImage image_to_tile, uint16_t area_width, uint16_t area_
     }
 }
 
+// заменяем изображение в виджете
+void Widget::change_image_in_widget(tImage image_to_output)
+{
+    changeable_images.clear();      // очищаем вектор изменяемых изображений в виджете
+    add_img_to_wgt(CHANGEABLE_IMG, image_to_output);  // добавляем изображение в вектор изменяемых изображений
+    draw_img_vector(changeable_images, wgt_coord_x, wgt_coord_y);                       // отрисовываем изменяемые изображения
+}
+
+// заменяем изображение в виджете
+void Widget::change_image_in_widget(tImage image_to_output, uint16_t img_out_coord_x, uint16_t img_out_coord_y)
+{
+    changeable_images.clear();      // очищаем вектор изменяемых изображений в виджете
+    add_img_to_wgt(CHANGEABLE_IMG, image_to_output, img_out_coord_x, img_out_coord_y);  // добавляем изображение в вектор изменяемых изображений
+    draw_img_vector(changeable_images, wgt_coord_x, wgt_coord_y);                       // отрисовываем изменяемые изображения
+}
+
+
 TotalDisplay total_display;
 
 void test_draw_all(void)
 {
 	total_display.all_pages_write_to_memory();
+}
+
+void test_sec_handler(void)
+{
+	total_display.colon_blink();
 }
 
 #ifdef __cplusplus

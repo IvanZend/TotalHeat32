@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+*.ioc
+*.map
+*.list
+*.elf
+*.bin
+*.su
+*.su
+*.su

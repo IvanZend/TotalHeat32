@@ -33,6 +33,7 @@
 	void test_output(void);
 	void TFT_FillScreen(uint32_t color);
 	void test_draw_all(void);
+	void test_sec_handler(void);
 
 #ifdef __cplusplus
 	}
