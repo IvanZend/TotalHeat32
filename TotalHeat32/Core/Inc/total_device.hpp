@@ -9,7 +9,8 @@
 #define INC_TOTAL_DEVICE_HPP_
 
 #include "stm32f4xx_hal.h"
-//#include "total_device.hpp"
+#include "main.h"
+
 
 #ifdef __cplusplus
 	extern "C"

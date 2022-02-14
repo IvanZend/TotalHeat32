@@ -66,7 +66,7 @@ void delay_us(uint32_t delay);
 #define LTDC_RES_Pin GPIO_PIN_7
 #define LTDC_RES_GPIO_Port GPIOH
 /* USER CODE BEGIN Private defines */
-
+void init_layers(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

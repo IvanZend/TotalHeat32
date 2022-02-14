@@ -61,7 +61,16 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void init_layers(void)
+{
+	w9812g6_init(&hsdram1);
+	for(uint8_t i=0; i<MAX_LAYER;i++)
+	{
+		HAL_LTDC_SetAddress(&hltdc,LCD_FRAME_BUFFER(i), i);
+	}
+	HAL_GPIO_WritePin(LTDC_PWM_GPIO_Port, LTDC_PWM_Pin, GPIO_PIN_SET);
+	test_draw_all();
+}
 /* USER CODE END 0 */
 
 /**
@@ -299,7 +308,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 63999;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 19999;
+  htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)

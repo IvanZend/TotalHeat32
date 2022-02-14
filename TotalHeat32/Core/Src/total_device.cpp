@@ -22,6 +22,7 @@ using namespace std;
 
 
 extern LTDC_HandleTypeDef hltdc;
+extern SDRAM_HandleTypeDef hsdram1;
 
 void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer){
 	 uint32_t y,x,p=Xpos,c=0; //len=strlen((char*)bitmap);
@@ -466,6 +467,7 @@ class TotalDisplay : public Touch_GT5688
     Display_page display_page;          // текущая страница интерфейса
     uint16_t display_width, display_height;
 
+    bool display_initialized;
     bool draw_all_completed;
     uint32_t bounce_sample_counter;     // счётчик дребезга
     Buttons_list bounce_btn_buff;       // буфер кнопки, для которой считаем дребезг
@@ -503,6 +505,7 @@ class TotalDisplay : public Touch_GT5688
 
 TotalDisplay::TotalDisplay(void)
 {
+	display_initialized  = 0;
     draw_all_completed = 0;
 
     display_width = DISPLAY_WIDTH;
@@ -872,11 +875,24 @@ void test_draw_all(void)
 	total_display.all_pages_write_to_memory();
 }
 
+
 void test_sec_handler(void)
 {
-	total_display.colon_blink();
+	if (total_display.display_initialized)
+	{
+		total_display.colon_blink();
+	}
+
+	if (!total_display.display_initialized)
+	{
+		init_layers();
+		total_display.display_initialized = 1;
+	}
 }
 
 #ifdef __cplusplus
 }
 #endif
+
+
+

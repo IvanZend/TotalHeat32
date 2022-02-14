@@ -3,46 +3,46 @@ gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 stl_vector.h:125:14:std::_Vector_base<int, std::allocator<int> >::_Vector_impl::~_Vector_impl()	16	static
 stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
 stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
-total_device.cpp:26:6:void TFT_DrawBitmap_d(uint32_t, uint32_t, const uint8_t*, uint16_t, uint16_t, uint8_t)	56	static
-total_device.cpp:53:6:void TFT_FillScreen(uint32_t)	24	static
-total_device.cpp:226:6:void test_output()	16	static
+total_device.cpp:27:6:void TFT_DrawBitmap_d(uint32_t, uint32_t, const uint8_t*, uint16_t, uint16_t, uint8_t)	56	static
+total_device.cpp:54:6:void TFT_FillScreen(uint32_t)	24	static
+total_device.cpp:227:6:void test_output()	16	static
 stl_vector.h:125:14:std::_Vector_base<ImageObj, std::allocator<ImageObj> >::_Vector_impl::~_Vector_impl()	16	static
 stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
 stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
-total_device.cpp:286:1:Widget::Widget(Buttons_list)	16	static
-total_device.cpp:300:1:Widget::Widget(Buttons_list, uint16_t, uint16_t)	24	static
-total_device.cpp:314:1:Widget::Widget(Buttons_list, uint16_t, uint16_t, uint16_t, uint16_t)	24	static
-total_device.cpp:327:6:void Widget::add_img_to_wgt(Img_vect_list, tImage)	48	static
-total_device.cpp:338:6:void Widget::add_img_to_wgt(Img_vect_list, tImage, uint16_t, uint16_t)	48	static
-total_device.cpp:348:6:void Widget::add_obj_to_wgt(Img_vect_list, ImageObj)	16	static
-total_device.cpp:379:6:void Widget::draw_img_vector(std::vector<ImageObj>, uint16_t, uint16_t)	56	static
-total_device.cpp:414:1:Touch_GT5688::Touch_GT5688()	16	static
-total_device.cpp:420:6:void Touch_GT5688::convert_16_bit_addr_to_8_bit_register(uint16_t, uint8_t*)	24	static
-total_device.cpp:426:9:uint8_t Touch_GT5688::i2c_write_read_register(uint16_t)	24	static
-total_device.cpp:441:6:void Touch_GT5688::i2c_write_addr_write_register(uint16_t, uint8_t)	24	static
-total_device.cpp:451:6:bool Touch_GT5688::touch_buffer_is_ready()	24	static
+total_device.cpp:287:1:Widget::Widget(Buttons_list)	16	static
+total_device.cpp:301:1:Widget::Widget(Buttons_list, uint16_t, uint16_t)	24	static
+total_device.cpp:315:1:Widget::Widget(Buttons_list, uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+total_device.cpp:328:6:void Widget::add_img_to_wgt(Img_vect_list, tImage)	48	static
+total_device.cpp:339:6:void Widget::add_img_to_wgt(Img_vect_list, tImage, uint16_t, uint16_t)	48	static
+total_device.cpp:349:6:void Widget::add_obj_to_wgt(Img_vect_list, ImageObj)	16	static
+total_device.cpp:380:6:void Widget::draw_img_vector(std::vector<ImageObj>, uint16_t, uint16_t)	56	static
+total_device.cpp:415:1:Touch_GT5688::Touch_GT5688()	16	static
+total_device.cpp:421:6:void Touch_GT5688::convert_16_bit_addr_to_8_bit_register(uint16_t, uint8_t*)	24	static
+total_device.cpp:427:9:uint8_t Touch_GT5688::i2c_write_read_register(uint16_t)	24	static
+total_device.cpp:442:6:void Touch_GT5688::i2c_write_addr_write_register(uint16_t, uint8_t)	24	static
+total_device.cpp:452:6:bool Touch_GT5688::touch_buffer_is_ready()	24	static
 stl_vector.h:125:14:std::_Vector_base<Widget, std::allocator<Widget> >::_Vector_impl::~_Vector_impl()	16	static
 stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
 stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = Widget; _Alloc = std::allocator<Widget>]	16	static
 stl_vector.h:125:14:std::_Vector_base<tImage, std::allocator<tImage> >::_Vector_impl::~_Vector_impl()	16	static
 stl_vector.h:285:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
 stl_vector.h:484:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = tImage; _Alloc = std::allocator<tImage>]	16	static
-total_device.cpp:504:1:TotalDisplay::TotalDisplay()	16	static
-total_device.cpp:520:6:void TotalDisplay::init_fonts_img_vect()	16	static
-total_device.cpp:241:7:Widget::~Widget()	16	static
-total_device.cpp:537:6:void TotalDisplay::init_widgets_content()	4288	static
-total_device.cpp:725:6:void TotalDisplay::init_widgets_size(std::vector<Widget>&)	32	static
-total_device.cpp:752:6:void TotalDisplay::draw_all_widgets(std::vector<Widget>&)	64	static
-total_device.cpp:766:6:void TotalDisplay::set_layer_for_widgets(std::vector<Widget>&, uint8_t)	32	static
-total_device.cpp:774:6:void TotalDisplay::set_all_widgets_active(std::vector<Widget>&, bool)	32	static
-total_device.cpp:782:6:void TotalDisplay::all_pages_write_to_memory()	16	static
-total_device.cpp:793:6:void TotalDisplay::colon_blink()	16	static
-total_device.cpp:811:6:void Widget::set_rectangle_page_0()	48	static
-total_device.cpp:838:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
-total_device.cpp:852:6:void Widget::change_image_in_widget(tImage)	48	static
-total_device.cpp:860:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
-total_device.cpp:870:6:void test_draw_all()	8	static
-total_device.cpp:875:6:void test_sec_handler()	8	static
+total_device.cpp:506:1:TotalDisplay::TotalDisplay()	16	static
+total_device.cpp:523:6:void TotalDisplay::init_fonts_img_vect()	16	static
+total_device.cpp:242:7:Widget::~Widget()	16	static
+total_device.cpp:540:6:void TotalDisplay::init_widgets_content()	4288	static
+total_device.cpp:728:6:void TotalDisplay::init_widgets_size(std::vector<Widget>&)	32	static
+total_device.cpp:755:6:void TotalDisplay::draw_all_widgets(std::vector<Widget>&)	64	static
+total_device.cpp:769:6:void TotalDisplay::set_layer_for_widgets(std::vector<Widget>&, uint8_t)	32	static
+total_device.cpp:777:6:void TotalDisplay::set_all_widgets_active(std::vector<Widget>&, bool)	32	static
+total_device.cpp:785:6:void TotalDisplay::all_pages_write_to_memory()	16	static
+total_device.cpp:796:6:void TotalDisplay::colon_blink()	16	static
+total_device.cpp:814:6:void Widget::set_rectangle_page_0()	48	static
+total_device.cpp:841:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
+total_device.cpp:855:6:void Widget::change_image_in_widget(tImage)	48	static
+total_device.cpp:863:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
+total_device.cpp:873:6:void test_draw_all()	8	static
+total_device.cpp:879:6:void test_sec_handler()	8	static
 stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = int]	16	static
 stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
@@ -147,7 +147,7 @@ stl_vector.h:462:7:static std::vector<_Tp, _Alloc>::pointer std::vector<_Tp, _Al
 stl_iterator.h:871:7:const _Iterator& __gnu_cxx::__normal_iterator<_Iterator, _Container>::base() const [with _Iterator = tImage*; _Container = std::vector<tImage>]	16	static
 stl_uninitialized.h:323:5:_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = tImage*; _ForwardIterator = tImage*; _Allocator = std::allocator<tImage>]	32	static
 move.h:74:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = const Widget&]	16	static
-total_device.cpp:241:7:Widget::Widget(const Widget&)	16	static
+total_device.cpp:242:7:Widget::Widget(const Widget&)	16	static
 new_allocator.h:144:2:) [with _Up = Widget; _Args = {const Widget&}; _Tp = Widget]	32	static
 stl_iterator.h:806:7:__gnu_cxx::__normal_iterator<_Iterator, _Container>::__normal_iterator(const _Iterator&) [with _Iterator = Widget*; _Container = std::vector<Widget>]	16	static
 stl_vector.h:1753:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_M_check_len(std::vector<_Tp, _Alloc>::size_type, const char*) const [with _Tp = Widget; _Alloc = std::allocator<Widget>]	40	static
@@ -238,7 +238,7 @@ stl_iterator.h:1078:7:std::move_iterator<_Iterator>& std::move_iterator<_Iterato
 stl_iterator.h:1070:7:std::move_iterator<_Iterator>::reference std::move_iterator<_Iterator>::operator*() const [with _Iterator = Widget*]	16	static
 stl_vector.h:305:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::_Vector_base<_Tp, _Alloc>&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
 stl_vector.h:569:7:std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
-total_device.cpp:241:7:Widget::Widget(Widget&&)	16	static
+total_device.cpp:242:7:Widget::Widget(Widget&&)	16	static
 stl_construct.h:74:5:) [with _T1 = Widget; _Args = {Widget}]	24	static
 stl_iterator.h:1010:5:_Iterator std::__niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container>) [with _Iterator = const ImageObj*; _Container = std::vector<ImageObj>]	16	static
 stl_algobase.h:393:5:_OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = const ImageObj*; _OI = ImageObj*]	32	static
@@ -267,7 +267,7 @@ move.h:99:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&
 stl_vector.h:99:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_impl_data(std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data&&) [with _Tp = ImageObj; _Alloc = std::allocator<ImageObj>]	16	static
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = ImageObj; bool _IsMove = true]	32	static
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = tImage; bool _IsMove = true]	32	static
-total_device.cpp:460:7:TotalDisplay::~TotalDisplay()	16	static
-total_device.cpp:881:1:void __static_initialization_and_destruction_0(int, int)	16	static
-total_device.cpp:881:1:cpp)	8	static
-total_device.cpp:881:1:cpp)	8	static
+total_device.cpp:461:7:TotalDisplay::~TotalDisplay()	16	static
+total_device.cpp:894:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_device.cpp:894:1:cpp)	8	static
+total_device.cpp:894:1:cpp)	8	static
