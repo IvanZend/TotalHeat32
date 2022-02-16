@@ -890,6 +890,23 @@ void test_sec_handler(void)
 	}
 }
 
+uint32_t ms_ticks_previous = 0;
+uint16_t ms_ticks_counter = 0;
+
+void handle_ms_tick(uint32_t ms_ticks_current)
+{
+	if (ms_ticks_current != ms_ticks_previous)
+	{
+		ms_ticks_previous = ms_ticks_current;
+		ms_ticks_counter++;
+		if (ms_ticks_counter == 1000)
+		{
+			ms_ticks_counter = 0;
+			test_sec_handler();
+		}
+	}
+}
+
 #ifdef __cplusplus
 }
 #endif

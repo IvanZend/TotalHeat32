@@ -35,6 +35,7 @@
 	void TFT_FillScreen(uint32_t color);
 	void test_draw_all(void);
 	void test_sec_handler(void);
+	void handle_ms_tick(uint32_t);
 
 #ifdef __cplusplus
 	}

@@ -43,6 +43,7 @@ total_device.cpp:855:6:void Widget::change_image_in_widget(tImage)	48	static
 total_device.cpp:863:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
 total_device.cpp:873:6:void test_draw_all()	8	static
 total_device.cpp:879:6:void test_sec_handler()	8	static
+total_device.cpp:896:6:void handle_ms_tick(uint32_t)	16	static
 stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = int]	16	static
 stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
@@ -268,6 +269,6 @@ stl_vector.h:99:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl_data::_Vector_imp
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = ImageObj; bool _IsMove = true]	32	static
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = tImage; bool _IsMove = true]	32	static
 total_device.cpp:461:7:TotalDisplay::~TotalDisplay()	16	static
-total_device.cpp:894:1:void __static_initialization_and_destruction_0(int, int)	16	static
-total_device.cpp:894:1:cpp)	8	static
-total_device.cpp:894:1:cpp)	8	static
+total_device.cpp:911:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_device.cpp:911:1:cpp)	8	static
+total_device.cpp:911:1:cpp)	8	static
