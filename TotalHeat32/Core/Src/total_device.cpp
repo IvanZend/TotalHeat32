@@ -1,5 +1,5 @@
 /*
- * total_display.cpp
+ * total_device.cpp
  *
  *  Created on: Feb 9, 2022
  *      Author: TZprog2
@@ -268,12 +268,12 @@ class Widget
     void tile_area(tImage image_to_tile, uint16_t area_width, uint16_t area_hight);
     void change_image_in_widget(tImage image_to_output);
     void change_image_in_widget(tImage image_to_output, uint16_t img_out_coord_x, uint16_t img_out_coord_y);            // изменить изображение изменить изображение в виджете
-    /*
-    uint16_t img_center_x(tImage img_to_center);                                // получить координату для размещения изображения в центре виджета
+    void change_value_in_wgt(Alignment numbers_align, uint8_t font_space, vector<tImage>& img_font, uint32_t value_to_displ);   // изменить числовое значение в виджете
+    uint16_t string_align_right_x(vector<tImage>& img_nmbrs_vect, uint8_t fnt_space, vector<uint8_t>& value_to_align);  // выровнять строку по правой границе виджета
     void lock_button(void);                 // заблокировать кнопку
     void unlock_button(void);               // разблокировать кнопку
-    uint16_t string_align_right_x(vector<tImage>& img_nmbrs_vect, uint8_t fnt_space, vector<uint8_t>& value_to_align);  // выровнять строку по правой границе виджета
-    void change_value_in_wgt(Alignment numbers_align, uint8_t font_space, vector<tImage>& img_font, uint32_t value_to_displ);   // изменить числовое значение в виджете
+    /*
+    uint16_t img_center_x(tImage img_to_center);                                // получить координату для размещения изображения в центре виджета
     void temper_input_add_number(uint8_t num_to_enter, uint16_t &variable_to_change);       // добавить разряд к вводимому значению
     void temper_input_backspace(uint16_t &variable_to_change);          // удалить младший разряд из вводимого значения
     void temper_input_reset(uint16_t &variable_to_change);              // сбросить вводимое значение
@@ -390,6 +390,38 @@ void Widget::draw_img_vector(vector<ImageObj> img_vector_to_draw, uint16_t paren
     }
 }
 
+uint16_t Widget::string_align_right_x(vector<tImage>& img_nmbrs_vect, uint8_t fnt_space, vector<uint8_t>& value_to_align)
+{
+    uint16_t string_summ_size = 0;                              // суммарная ширина строки
+    for (vector<uint8_t>::size_type i = 0; i < value_to_align.size(); i++)             // проходимся по всем символам строки
+    {
+        string_summ_size += (img_nmbrs_vect[value_to_align[i]].width + fnt_space);      // прибавляем к суммарной ширине ширину символа и пробел между символами
+    }
+    if (string_summ_size <= wgt_width)                                                  // если не превышена ширина виджета
+    {
+        string_summ_size = wgt_width - string_summ_size;                                // получаем координату начала строки в виджете
+    }
+    else
+    {
+        string_summ_size = 0;                                                           // иначе обнуляем ширину строки
+    }
+    return string_summ_size;                                                            // возвращаем ширину строки
+}
+
+void Widget::lock_button(void)
+{
+    button_is_pressed = false;                                          // убираем флаг нажатия
+    draw_img_vector(blocked_btn_images, wgt_coord_x, wgt_coord_y);      // меняем изображение кнопки
+    btn_locked = true;                                                  // включаем флаг блокировки
+}
+
+// разблокируем кнопку
+void Widget::unlock_button(void)
+{
+    button_is_pressed = false;                                          // убираем флаг нажатия
+    draw_img_vector(released_btn_images, wgt_coord_x, wgt_coord_y);     // меняем изображение кнопки
+    btn_locked = false;                                                 // выключаем флаг блокировки
+}
 
 class Touch_GT5688
 {
@@ -503,6 +535,173 @@ class TotalDisplay : public Touch_GT5688
     int16_t get_value_to_temper(void);
 };
 
+enum Process_stage
+{
+    PROCESS_STARTED,
+    PROCESS_STOPPED,
+    PROCESS_PAUSED
+};
+
+class TotalDevice : public TotalDisplay
+{
+    public:
+    bool vacuum_connected_to_timer;
+    bool temper_connected_to_timer;
+    Process_stage current_stage;
+    bool vacuum_started;
+    bool temper_started;
+    int16_t current_vacuum;
+    int16_t previous_vacuum;
+    int16_t previous_temper_chamber;
+    int16_t current_hours;
+    int16_t current_minutes;
+    int16_t edit_vacuum_0;
+    int16_t edit_vacuum_1;
+    int16_t edit_temper_0;
+    int16_t edit_temper_1;
+    int16_t edit_temper_2;
+    int16_t edit_minutes_0;
+    int16_t edit_minutes_1;
+    int16_t edit_hours_0;
+    int16_t edit_hours_1;
+    bool colon_is_active;
+    int8_t seconds_counter;
+    uint16_t previous_termocouple_heater;
+    uint32_t time_before_start_vacuum;
+    uint32_t time_before_stop_vacuum;
+    uint32_t global_sec_counter;
+    bool i2c_is_busy;
+    int32_t tmp_bar_raw;
+    int16_t required_temperature;
+
+    TotalDevice();
+    void start_process(void);
+    void stop_process(void);
+    void reset_timer(void);
+    void pause_process(void);
+    void unpause_process(void);
+    void start_vacuum(void);
+    void stop_vacuum(void);
+    void start_temper(void);
+    void stop_temper(void);
+    void seconds_timer_handler(void);
+    void minus_one_minute(void);
+    void connect_vacuum_to_timer(void);
+    void disconnect_vacuum_to_timer(void);
+    void connect_temper_to_timer(void);
+    void disconnect_temper_to_timer(void);
+    void update_sensors_data(void);
+    uint32_t calculate_seconds_before_start_vacuum(uint16_t all_process_time);
+    uint16_t return_time_in_minutes(uint16_t hours_to_convert, uint16_t minutes_to_convert);
+    void set_ten_heat(int16_t air_temper);
+};
+
+TotalDevice::TotalDevice(void)
+{
+    vacuum_connected_to_timer = true;
+    temper_connected_to_timer = true;
+    current_stage = PROCESS_STOPPED;
+    vacuum_started = 0;
+    temper_started = 0;
+    current_vacuum = 0;
+    previous_vacuum = 0;
+    previous_temper_chamber = 0;
+    current_hours = 0;
+    current_minutes = 0;
+    edit_vacuum_0 = 0;
+    edit_vacuum_1 = 0;
+    edit_temper_0 = 0;
+    edit_temper_1 = 0;
+    edit_temper_2 = 0;
+    edit_minutes_0 = 0;
+    edit_minutes_1 = 0;
+    edit_hours_0 = 0;
+    edit_hours_1 = 0;
+    colon_is_active = true;
+    seconds_counter = 0;
+    previous_termocouple_heater = 0;
+    time_before_start_vacuum = 0;
+    time_before_stop_vacuum = 0;
+    global_sec_counter = 0;
+    i2c_is_busy = false;
+    tmp_bar_raw = 0;
+    required_temperature = 0;
+}
+
+TotalDevice total_device;
+
+void TotalDisplay::convert_value_to_int_arr(vector<uint8_t>& value_int_vect,  uint32_t value_to_conv)
+{
+    uint16_t number_of_decimal_digits = 0;              // количество десячиных разрядов
+    uint32_t dec_divider_buf_1 = 1;                     // десятка в степени, на неё делим
+    uint32_t prev_digits_buf = 0;                       // буфер старших разрядов, его вычитаем
+
+    if (value_to_conv > 0)                              // если наше значение больше нуля
+    {
+        while (dec_divider_buf_1 <= value_to_conv)      // проходимся по всем разрядам
+        {
+            number_of_decimal_digits++;                 // инкрементируем количество разрядов
+            dec_divider_buf_1 *= 10;                    // умножаем на 10 десятку в степени
+        }
+        dec_divider_buf_1 /= 10;                        // делим на 10 десятку в степени (чтобы был первый разряд)
+    }
+    else
+    {
+        number_of_decimal_digits = 1;                   // если значение равно нулю, количество разрядов равно 1
+    }
+
+    value_int_vect.resize(number_of_decimal_digits);    // меняем размер вектора для нужного количества разрядов
+    for (uint16_t i = number_of_decimal_digits; i > 0; i--)     // проходимся по каждому десятичному разряду
+    {
+        value_int_vect[i - 1] = value_to_conv/(dec_divider_buf_1) - prev_digits_buf;    // делим текущий разряд на десятку в степени, затем вычитаем более старшие разряды
+        dec_divider_buf_1 /= 10;                        // уменьшаем на разряд десятку в степени
+        prev_digits_buf += (value_int_vect[i - 1]);     // прибавляем текущий разряд к буферу старших разрядов
+        prev_digits_buf *= 10;                          // домножаем старшие разряды на 10
+    }
+}
+
+void Widget::change_value_in_wgt(Alignment numbers_align, uint8_t font_space, vector<tImage>& img_font, uint32_t value_to_displ)
+{
+    vector<uint8_t> value_digits_array;                                 // создаём массив разрядов
+    total_device.convert_value_to_int_arr(value_digits_array, value_to_displ);       // конвертируем число в массив разрядов
+    int16_t init_coord_x = 0;                                           // начальная координата строки в виджете
+
+    while (init_coord_x <= (wgt_width - (img_font[IMG_BACKGR_IN_VECT].width)))  // пока координата строки меньше ширины виджета за вычетом ширины одного символа
+    {
+        change_image_in_widget(img_font[IMG_BACKGR_IN_VECT], init_coord_x, 0);  // отрисовываем фон символа
+        init_coord_x += img_font[IMG_BACKGR_IN_VECT].width;                     // прибавляем к начальной координате ширину фона символа
+    }
+    init_coord_x = wgt_width - img_font[IMG_BACKGR_IN_VECT].width + 4;          // начальная координата равна ширине виджета за вычетом ширины одного символа + 4 пикселя (вправо)
+    //change_image_in_widget(img_font[IMG_BACKGR_IN_VECT], init_coord_x, 0);      // отрисовываем крайний правый фон символа
+    change_image_in_widget(img_font[IMG_BACKGR_IN_VECT], 0, 0);      // отрисовываем крайний правый фон символа
+
+    switch (numbers_align)
+    {
+    case ALIGN_LEFT:                // если выравнивание по левой стороне
+    {
+        init_coord_x = 0;           // начинаем с начала виджета
+        break;
+    }
+    case ALIGN_RIGHT:               // если выравнивание по правой стороне
+    {
+        init_coord_x = string_align_right_x(img_font, font_space, value_digits_array);      // определяем координату строки в виджете
+        break;
+    }
+    }
+    uint16_t img_string_size_buf = 0;                                                       // буфер размера строки
+    for (vector<uint8_t>::size_type i = value_digits_array.size(); i > 0; i--)              // проходимся по массиву разрядов
+    {
+        if (i <= MAX_NMBR_IN_STRING)
+        {
+            change_image_in_widget(img_font[value_digits_array[i - 1]], (init_coord_x + img_string_size_buf), 0);   // отрисовываем разряд
+            img_string_size_buf += (img_font[value_digits_array[i - 1]].width + font_space);
+        }
+    }
+}
+
+
+
+
 TotalDisplay::TotalDisplay(void)
 {
 	display_initialized  = 0;
@@ -534,8 +733,6 @@ void TotalDisplay::init_fonts_img_vect(void)
     numbers_33_font_vector.push_back(numbers_33_9);
     numbers_33_font_vector.push_back(numbers_33_backgr);
 }
-
-
 
 void TotalDisplay::init_widgets_content(void)
 {
@@ -788,7 +985,7 @@ void TotalDisplay::all_pages_write_to_memory(void)
     draw_all_widgets(start_page);
     //set_buttons_state();
     //init_displayed_values();
-    //main_device.stop_temper();
+    //total_device.stop_temper();
 }
 
 bool colon_is_active;
@@ -799,15 +996,687 @@ void TotalDisplay::colon_blink(void)
     {
         start_page[43].change_image_in_widget(img_no_colon);
         colon_is_active = false;
-        //main_device.colon_is_active = false;
+        //total_device.colon_is_active = false;
 
     }
     else
     {
         start_page[43].change_image_in_widget(img_colon);
         colon_is_active = true;
-        //main_device.colon_is_active = true;
+        //total_device.colon_is_active = true;
 
+    }
+}
+
+// определяем нажатую кнопку
+Buttons_list TotalDisplay::identify_pressed_btn(uint16_t pressing_coord_x, uint16_t pressing_coord_y, vector<Widget> current_page)
+{
+    pressing_coord_x += CALIBRATION_OFFSET_X;       // добавляем калибровочное смещение, ибо тачскрин и дисплей могут не совпадать
+    pressing_coord_y += CALIBRATION_OFFSET_Y;
+
+    for (vector<Widget>::size_type i = 0; i != current_page.size(); i++)          // проходимся по вектору виджетов
+    {
+        if (current_page[i].button_name != NO_BUTTON)                             // если данный вектор являетс кнопкой
+        {
+            if (current_page[i].widget_btn_is_active)
+            {
+                if ((WITHIN(pressing_coord_x, current_page[i].wgt_coord_x, \
+                (current_page[i].wgt_coord_x + current_page[i].wgt_width))) && \
+                    (WITHIN(pressing_coord_y, current_page[i].wgt_coord_y, \
+                    (current_page[i].wgt_coord_y + current_page[i].wgt_height))))      // если текущие координаты нажатия находятся внутри кнопки
+                {
+                    return current_page[i].button_name;                             // возвращаем номер кнопки (определён через enum)
+                }
+            }
+        }
+    }
+
+    return NO_BUTTON;
+}
+
+vector<Widget>& TotalDisplay::return_current_page_vect(Display_page page_name_to_parse)
+{
+    switch (page_name_to_parse)
+    {
+        case START_PAGE:
+        {
+            return start_page;
+        }
+        default:
+        {
+        	return start_page;
+        }
+    }
+}
+
+int16_t TotalDisplay::convert_editable_time_to_int(int16_t time_digit_0, int16_t time_digit_1)
+{
+    int16_t time_to_return = time_digit_0;
+    time_to_return += time_digit_1*10;
+    return time_to_return;
+}
+
+void TotalDisplay::get_values_to_timer(void)
+{
+    total_device.current_hours = convert_editable_time_to_int(total_device.edit_hours_0, total_device.edit_hours_1);
+    total_device.current_minutes = convert_editable_time_to_int(total_device.edit_minutes_0, total_device.edit_minutes_1);
+    output_time(total_device.current_hours, total_device.current_minutes);
+}
+
+uint16_t TotalDevice::return_time_in_minutes(uint16_t hours_to_convert, uint16_t minutes_to_convert)
+{
+    uint16_t time_to_return_min = minutes_to_convert;
+    time_to_return_min += (hours_to_convert * 60);
+    return time_to_return_min;
+}
+
+void TotalDevice::start_process(void)
+{
+    total_device.get_values_to_timer();
+    if ((current_hours == 0) && (current_minutes == 0))
+    {
+        return;
+    }
+    else
+    {
+        total_device.start_page[22].lock_button();
+        total_device.start_page[23].unlock_button();
+        total_device.start_page[24].unlock_button();
+        if (temper_connected_to_timer)
+        {
+            start_temper();
+        }
+        global_sec_counter = return_time_in_minutes(current_hours, current_minutes)*60;
+        time_before_start_vacuum = (global_sec_counter * TIME_PERSENT_TO_VACUUM)/100;
+        // time_before_start_vacuum = calculate_seconds_before_start_vacuum(return_time_in_minutes(current_hours, current_minutes));
+        time_before_stop_vacuum = (global_sec_counter * TIME_PERCENT_TO_HEAT)/100;
+        total_device.start_page[14].lock_button();
+        total_device.start_page[35].lock_button();
+        current_stage = PROCESS_STARTED;
+    }
+}
+
+void TotalDisplay::output_time(uint16_t hours_to_out, uint16_t minutes_to_out)
+{
+    vector<uint8_t> digits_array_hours;                                 // создаём массив разрядов
+    convert_value_to_int_arr(digits_array_hours, hours_to_out);         // конвертируем число в массив разрядов
+    if (digits_array_hours.size() == 1)
+    {
+        digits_array_hours.push_back(0);
+    }
+    vector<uint8_t> digits_array_minutes;
+    convert_value_to_int_arr(digits_array_minutes, minutes_to_out);
+    if (digits_array_minutes.size() == 1)
+    {
+        digits_array_minutes.push_back(0);
+    }
+    start_page[39].change_value_in_wgt(ALIGN_LEFT, FONT_33_GAP_PIX, numbers_33_font_vector, digits_array_minutes[0]);
+    start_page[40].change_value_in_wgt(ALIGN_LEFT, FONT_33_GAP_PIX, numbers_33_font_vector, digits_array_minutes[1]);
+    start_page[41].change_value_in_wgt(ALIGN_LEFT, FONT_33_GAP_PIX, numbers_33_font_vector, digits_array_hours[0]);
+    start_page[42].change_value_in_wgt(ALIGN_LEFT, FONT_33_GAP_PIX, numbers_33_font_vector, digits_array_hours[1]);
+}
+
+
+void TotalDevice::reset_timer(void)
+{
+    current_hours = 0;
+    current_minutes = 0;
+    seconds_counter = 0;
+    total_device.output_time(total_device.current_hours, total_device.current_minutes);
+}
+
+
+void TotalDevice::stop_process(void)
+{
+    total_device.start_page[43].change_image_in_widget(img_colon);
+    total_device.colon_is_active = true;
+    reset_timer();
+    total_device.start_page[22].unlock_button();
+    total_device.start_page[23].lock_button();
+    total_device.start_page[24].lock_button();
+    if (vacuum_connected_to_timer)
+    {
+        stop_vacuum();
+    }
+    if (temper_connected_to_timer)
+    {
+        stop_temper();
+    }
+    global_sec_counter = 0;
+    total_device.start_page[14].unlock_button();
+    total_device.start_page[35].unlock_button();
+    current_stage = PROCESS_STOPPED;
+}
+
+
+void TotalDevice::pause_process(void)
+{
+	total_device.start_page[24].change_image_in_widget(img_btn_timer_pause_prsd);
+    current_stage = PROCESS_PAUSED;
+}
+
+void TotalDevice::unpause_process(void)
+{
+	total_device.start_page[24].change_image_in_widget(img_btn_timer_pause_rlsd);
+    current_stage = PROCESS_STARTED;
+}
+
+void TotalDevice::start_vacuum(void)
+{
+    //WRITE(PB8, HIGH);
+    if (total_device.start_page[14].btn_locked)
+    {
+        total_device.start_page[14].change_image_in_widget(img_btn_timer_stop_blocked);
+    }
+    else
+    {
+        total_device.start_page[14].change_image_in_widget(img_btn_timer_stop_prsd);
+    }
+    total_device.start_page[1].change_image_in_widget(img_pressure_sensor_icon_enabled, 54, 52);
+    vacuum_started = true;
+}
+
+void TotalDevice::stop_vacuum(void)
+{
+    //WRITE(PB8, LOW);
+    if (total_device.start_page[14].btn_locked)
+    {
+       total_device.start_page[14].change_image_in_widget(img_btn_vac_temper_start_blocked);
+    }
+    else
+    {
+        total_device.start_page[14].change_image_in_widget(img_btn_vac_temper_start_rlsd);
+    }
+    total_device.start_page[1].change_image_in_widget(img_pressure_sensor_icon_crossed, 54, 52);
+    vacuum_started = false;
+}
+
+int16_t TotalDisplay::get_value_to_temper(void)
+{
+    return total_device.edit_temper_0 + total_device.edit_temper_1*10 + total_device.edit_temper_2*100;
+}
+
+void TotalDevice::set_ten_heat(int16_t air_temper)
+{
+    if (air_temper <= TEN_ADDITION_TRESHOLD)
+    {
+        //Temperature::OVEN_HEATER.target = air_temper + TEN_TEMPERATURE_ADDITION_0;
+    }
+    else
+    {
+        //Temperature::OVEN_HEATER.target = air_temper + TEN_TEMPERATURE_ADDITION_1;
+    }
+}
+
+void TotalDevice::start_temper(void)
+{
+    total_device.required_temperature = total_device.get_value_to_temper();
+
+    set_ten_heat(total_device.required_temperature);
+
+    if (total_device.start_page[35].btn_locked)
+    {
+        total_device.start_page[35].change_image_in_widget(img_btn_timer_stop_blocked);
+    }
+    else
+    {
+        total_device.start_page[35].change_image_in_widget(img_btn_timer_stop_prsd);
+    }
+    temper_started = true;
+}
+
+void TotalDevice::stop_temper(void)
+{
+    //Temperature::OVEN_HEATER.target = NO_HEAT_DUMMY_VALUE;                                      // требуем минимальную температуру
+    if (total_device.start_page[35].btn_locked)
+    {
+       total_device.start_page[35].change_image_in_widget(img_btn_vac_temper_start_blocked);
+    }
+    else
+    {
+        total_device.start_page[35].change_image_in_widget(img_btn_vac_temper_start_rlsd);
+    }
+
+    temper_started = false;
+}
+
+void TotalDisplay::update_editable_time(void)
+{
+    start_page[49].change_value_in_wgt(ALIGN_LEFT, 0, numbers_33_font_vector, total_device.edit_minutes_0);
+    start_page[50].change_value_in_wgt(ALIGN_LEFT, 0, numbers_33_font_vector, total_device.edit_minutes_1);
+    start_page[51].change_value_in_wgt(ALIGN_LEFT, 0, numbers_33_font_vector, total_device.edit_hours_0);
+    start_page[52].change_value_in_wgt(ALIGN_LEFT, 0, numbers_33_font_vector, total_device.edit_hours_1);
+}
+
+void TotalDisplay::update_editable_temper(void)
+{
+    if (total_device.edit_temper_2 == MAX_HUNDRED_CELSIUS - 1)
+    {
+        total_device.edit_temper_0 = 0;
+        total_device.edit_temper_1 = 0;
+    }
+    if (total_device.edit_temper_2 > MAX_HUNDRED_CELSIUS - 1)
+    {
+        total_device.edit_temper_0 = 0;
+        total_device.edit_temper_1 = 0;
+        total_device.edit_temper_2 = MAX_HUNDRED_CELSIUS - 1;
+    }
+    start_page[46].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.edit_temper_0);
+    start_page[47].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.edit_temper_1);
+    start_page[48].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.edit_temper_2);
+
+    if (total_device.temper_started)
+    {
+        total_device.required_temperature = total_device.get_value_to_temper();
+    }
+}
+
+void TotalDisplay::update_editable_vacuum(void)
+{
+    start_page[44].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.edit_vacuum_0);
+    start_page[45].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.edit_vacuum_1);
+}
+
+
+void TotalDisplay::handle_button_press(Buttons_list pressed_button, vector<Widget>& pressed_page, Display_page current_page_name_to_handle)
+{
+    for (vector<Widget>::size_type i = 0; i != pressed_page.size(); i++)                          // проходимся по вектору виджетов
+    {
+        if ((pressed_button == pressed_page[i].button_name) && (pressed_page[i].btn_locked))    // если данная кнопка заблокирована - выходим из функции
+        {
+            return;
+        }
+    }
+
+
+    switch (current_page_name_to_handle)
+    {
+        case START_PAGE:
+        {
+            switch (pressed_button)
+            {
+                case TIMER_START:
+                {
+                    total_device.start_process();
+                    break;
+                }
+                case TIMER_STOP:
+                {
+                    total_device.stop_process();
+                    break;
+                }
+                case TIMER_PAUSE:
+                {
+                    if (total_device.current_stage == PROCESS_STARTED)
+                    {
+                        total_device.pause_process();
+                    }
+                    else if (total_device.current_stage == PROCESS_PAUSED)
+                    {
+                        total_device.unpause_process();
+                    }
+                    break;
+                }
+                case VACUUM_START_STOP:
+                {
+                    if (total_device.vacuum_started)
+                    {
+                        total_device.stop_vacuum();
+                    }
+                    else
+                    {
+                        total_device.start_vacuum();
+                    }
+                    break;
+                }
+                case VACUUM_CONNECT_TO_TMER:
+                {
+                    if (total_device.vacuum_connected_to_timer)
+                    {
+                        //total_device.disconnect_vacuum_to_timer();
+
+                    }
+                    else
+                    {
+                        //total_device.connect_vacuum_to_timer();
+                    }
+                    break;
+                }
+                case TEMPER_START_STOP:
+                {
+                    if (total_device.temper_started)
+                    {
+                        total_device.stop_temper();
+                    }
+                    else
+                    {
+                        total_device.start_temper();
+                    }
+                    break;
+                }
+                case TEMPER_CONNECT_TO_TIMER:
+                {
+                    if (total_device.temper_connected_to_timer)
+                    {
+                        //total_device.disconnect_temper_to_timer();
+                    }
+                    else
+                    {
+                        //total_device.connect_temper_to_timer();
+                    }
+                    break;
+                }
+                case TIMER_INCREASE_0:
+                {
+                    total_device.edit_minutes_0++;
+                    if (total_device.edit_minutes_0 == 10)
+                    {
+                        total_device.edit_minutes_0 = 0;
+                        total_device.edit_minutes_1++;
+                        if (total_device.edit_minutes_1 == 6)
+                        {
+                            total_device.edit_minutes_1 = 0;
+                            total_device.edit_hours_0++;
+                            if (total_device.edit_hours_0 == 10)
+                            {
+                                total_device.edit_hours_0 = 0;
+                                total_device.edit_hours_1++;
+                                if (total_device.edit_hours_1 == 10)
+                                {
+                                    total_device.edit_hours_1 = 0;
+                                }
+                            }
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_INCREASE_1:
+                {
+                    total_device.edit_minutes_1++;
+                    if (total_device.edit_minutes_1 == 6)
+                    {
+                        total_device.edit_minutes_1 = 0;
+                        total_device.edit_hours_0++;
+                        if (total_device.edit_hours_0 == 10)
+                        {
+                            total_device.edit_hours_0 = 0;
+                            total_device.edit_hours_1++;
+                            if (total_device.edit_hours_1 == 10)
+                            {
+                                total_device.edit_hours_1 = 0;
+                            }
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_INCREASE_2:
+                {
+                    total_device.edit_hours_0++;
+                    if (total_device.edit_hours_0 == 10)
+                    {
+                        total_device.edit_hours_0 = 0;
+                        total_device.edit_hours_1++;
+                        if (total_device.edit_hours_1 == 10)
+                        {
+                            total_device.edit_hours_1 = 0;
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_INCREASE_3:
+                {
+                    total_device.edit_hours_1++;
+                    if (total_device.edit_hours_1 == 10)
+                    {
+                        total_device.edit_hours_1 = 0;
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_DECREASE_0:
+                {
+                    total_device.edit_minutes_0--;
+                    if (total_device.edit_minutes_0 < 0)
+                    {
+                        total_device.edit_minutes_0 = 9;
+                        total_device.edit_minutes_1--;
+                        if (total_device.edit_minutes_1 < 0)
+                        {
+                            total_device.edit_minutes_1 = 5;
+                            total_device.edit_hours_0--;
+                            if (total_device.edit_hours_0 < 0)
+                            {
+                                total_device.edit_hours_0 = 9;
+                                total_device.edit_hours_1--;
+                                if (total_device.edit_hours_1 < 0)
+                                {
+                                    total_device.edit_hours_1 = 9;
+                                }
+                            }
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_DECREASE_1:
+                {
+                    total_device.edit_minutes_1--;
+                    if (total_device.edit_minutes_1 < 0)
+                    {
+                        total_device.edit_minutes_1 = 5;
+                        total_device.edit_hours_0--;
+                        if (total_device.edit_hours_0 < 0)
+                        {
+                            total_device.edit_hours_0 = 9;
+                            total_device.edit_hours_1--;
+                            if (total_device.edit_hours_1 < 0)
+                            {
+                                total_device.edit_hours_1 = 9;
+                            }
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_DECREASE_2:
+                {
+                    total_device.edit_hours_0--;
+                    if (total_device.edit_hours_0 < 0)
+                    {
+                        total_device.edit_hours_0 = 9;
+                        total_device.edit_hours_1--;
+                        if (total_device.edit_hours_1 < 0)
+                        {
+                            total_device.edit_hours_1 = 9;
+                        }
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TIMER_DECREASE_3:
+                {
+                    total_device.edit_hours_1--;
+                    if (total_device.edit_hours_1 < 0)
+                    {
+                        total_device.edit_hours_1 = 9;
+                    }
+                    update_editable_time();
+                    break;
+                }
+                case TEMPER_INCREASE_0:
+                {
+                    total_device.edit_temper_0++;
+                    if (total_device.edit_temper_0 == 10)
+                    {
+                        total_device.edit_temper_0 = 0;
+                        total_device.edit_temper_1++;
+                        if (total_device.edit_temper_1 == 10)
+                        {
+                            total_device.edit_temper_1 = 0;
+                            total_device.edit_temper_2++;
+                            if (total_device.edit_temper_2 == MAX_HUNDRED_CELSIUS)
+                            {
+                                total_device.edit_temper_2 = 0;
+                            }
+                        }
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case TEMPER_INCREASE_1:
+                {
+                    total_device.edit_temper_1++;
+                    if (total_device.edit_temper_1 == 10)
+                    {
+                        total_device.edit_temper_1 = 0;
+                        total_device.edit_temper_2++;
+                        if (total_device.edit_temper_2 == MAX_HUNDRED_CELSIUS)
+                        {
+                            total_device.edit_temper_2 = 0;
+                        }
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case TEMPER_INCREASE_2:
+                {
+                    total_device.edit_temper_2++;
+                    if (total_device.edit_temper_2 == MAX_HUNDRED_CELSIUS)
+                    {
+                        total_device.edit_temper_2 = 0;
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case TEMPER_DECREASE_0:
+                {
+                    total_device.edit_temper_0--;
+                    if (total_device.edit_temper_0 < 0)
+                    {
+                        total_device.edit_temper_0 = 9;
+                        total_device.edit_temper_1--;
+                        if (total_device.edit_temper_1 < 0)
+                        {
+                            total_device.edit_temper_1 = 9;
+                            total_device.edit_temper_2--;
+                            if (total_device.edit_temper_2 < 0)
+                            {
+                                total_device.edit_temper_2 = MAX_HUNDRED_CELSIUS - 1;
+                            }
+                        }
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case TEMPER_DECREASE_1:
+                {
+                    total_device.edit_temper_1--;
+                    if (total_device.edit_temper_1 < 0)
+                    {
+                        total_device.edit_temper_1 = 9;
+                        total_device.edit_temper_2--;
+                        if (total_device.edit_temper_2 < 0)
+                        {
+                            total_device.edit_temper_2 = MAX_HUNDRED_CELSIUS - 1;
+                        }
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case TEMPER_DECREASE_2:
+                {
+                    total_device.edit_temper_2--;
+                    if (total_device.edit_temper_2 < 0)
+                    {
+                        total_device.edit_temper_2 = MAX_HUNDRED_CELSIUS - 1;
+                    }
+                    update_editable_temper();
+                    break;
+                }
+                case VACUUM_INCREASE_0:
+                {
+                    total_device.edit_vacuum_0++;
+                    if (total_device.edit_vacuum_0 == 9)
+                    {
+                        total_device.edit_vacuum_0 = 0;
+                    }
+                    update_editable_vacuum();
+                    break;
+                }
+                case VACUUM_DECREASE_0:
+                {
+                    total_device.edit_vacuum_0--;
+                    if (total_device.edit_vacuum_0 < 0)
+                    {
+                        total_device.edit_vacuum_0 = 9;
+                    }
+                    update_editable_vacuum();
+                    break;
+                }
+                case NO_BUTTON:
+                {
+
+                	break;
+                }
+            }
+            break;
+        }
+    }
+}
+
+
+void TotalDisplay::release_all_buttons_in_vect(vector<Widget>& vect_to_release)
+{
+    for (vector<Widget>::size_type i = 0; i != vect_to_release.size(); i++)
+    {
+        if (vect_to_release[i].button_name != NO_BUTTON)
+        {
+            if (vect_to_release[i].button_is_pressed == true)
+            {
+                vect_to_release[i].button_is_pressed = false;
+                vect_to_release[i].draw_img_vector(vect_to_release[i].released_btn_images, \
+                                                    vect_to_release[i].wgt_coord_x, \
+                                                    vect_to_release[i].wgt_coord_y);          // отрисовываем отпущенную кнопку
+            }
+        }
+    }
+}
+
+void TotalDisplay::i2c_read_touch(void)
+{
+    if (touch_buffer_is_ready())
+    {
+        TouchPoint current_touch_point;
+        current_touch_point.touch_coord_x = i2c_write_read_register(I2C_POINT_1_X_LOW_BYTE);
+        current_touch_point.touch_coord_x += (i2c_write_read_register(I2C_POINT_1_X_HIGH_BYTE)) << 8;
+        current_touch_point.touch_coord_y = i2c_write_read_register(I2C_POINT_1_Y_LOW_BYTE);
+        current_touch_point.touch_coord_y += (i2c_write_read_register(I2C_POINT_1_Y_HIGH_BYTE)) << 8;
+        //i2c_write_read_register(I2C_POINT_1_SIZE_W);
+        //i2c_write_read_register(I2C_POINT_1_SIZE_H);
+        i2c_write_addr_write_register(I2C_TOUCH_BUFF_STATUS, 0x00);
+        if ((current_touch_point.touch_coord_x <= DISPLAY_WIDTH) && (current_touch_point.touch_coord_y <= DISPLAY_HEIGHT))
+        {
+            if (coord_glitch_filter == TOUCH_GLITCH_COUNTER)
+            {
+                Buttons_list tmp_btn_name = identify_pressed_btn(current_touch_point.touch_coord_x, current_touch_point.touch_coord_y, \
+                                                                return_current_page_vect(current_page_name));
+                handle_button_press(tmp_btn_name, return_current_page_vect(current_page_name), current_page_name);
+            }
+            coord_glitch_filter++;
+            if (coord_glitch_filter > TOUCH_GLITCH_COUNTER)
+            {
+                coord_glitch_filter = TOUCH_GLITCH_COUNTER + 1;
+            }
+        }
+    }
+    else
+    {
+        coord_glitch_filter = 0;
+        release_all_buttons_in_vect(return_current_page_vect(current_page_name));
+        //release_all_buttons_in_vect(mutable_wgts);
     }
 }
 
@@ -868,30 +1737,31 @@ void Widget::change_image_in_widget(tImage image_to_output, uint16_t img_out_coo
 }
 
 
-TotalDisplay total_display;
+
 
 void test_draw_all(void)
 {
-	total_display.all_pages_write_to_memory();
+	total_device.all_pages_write_to_memory();
 }
 
 
-void test_sec_handler(void)
+void sec_handler(void)
 {
-	if (total_display.display_initialized)
+	if (total_device.display_initialized)
 	{
-		total_display.colon_blink();
+		total_device.colon_blink();
 	}
 
-	if (!total_display.display_initialized)
+	if (!total_device.display_initialized)
 	{
 		init_layers();
-		total_display.display_initialized = 1;
+		total_device.display_initialized = 1;
 	}
 }
 
 uint32_t ms_ticks_previous = 0;
 uint16_t ms_ticks_counter = 0;
+uint16_t i2c_ms_counter = 0;
 
 void handle_ms_tick(uint32_t ms_ticks_current)
 {
@@ -902,7 +1772,14 @@ void handle_ms_tick(uint32_t ms_ticks_current)
 		if (ms_ticks_counter == 1000)
 		{
 			ms_ticks_counter = 0;
-			test_sec_handler();
+			sec_handler();
+		}
+
+		i2c_ms_counter++;
+		if(i2c_ms_counter == I2C_TRANSMISSION_INTERVAL_MS)
+		{
+			i2c_ms_counter = 0;
+			total_device.i2c_read_touch();
 		}
 	}
 }
