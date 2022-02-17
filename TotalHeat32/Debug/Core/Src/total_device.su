@@ -45,38 +45,40 @@ total_device.cpp:925:6:void TotalDisplay::init_widgets_size(std::vector<Widget>&
 total_device.cpp:952:6:void TotalDisplay::draw_all_widgets(std::vector<Widget>&)	64	static
 total_device.cpp:966:6:void TotalDisplay::set_layer_for_widgets(std::vector<Widget>&, uint8_t)	32	static
 total_device.cpp:974:6:void TotalDisplay::set_all_widgets_active(std::vector<Widget>&, bool)	32	static
-total_device.cpp:982:6:void TotalDisplay::all_pages_write_to_memory()	16	static
-total_device.cpp:993:6:void TotalDisplay::colon_blink()	16	static
-total_device.cpp:1012:14:Buttons_list TotalDisplay::identify_pressed_btn(uint16_t, uint16_t, std::vector<Widget>)	40	static
-total_device.cpp:1037:17:std::vector<Widget>& TotalDisplay::return_current_page_vect(Display_page)	16	static
-total_device.cpp:1052:9:int16_t TotalDisplay::convert_editable_time_to_int(int16_t, int16_t)	24	static
-total_device.cpp:1059:6:void TotalDisplay::get_values_to_timer()	16	static
-total_device.cpp:1066:10:uint16_t TotalDevice::return_time_in_minutes(uint16_t, uint16_t)	24	static
-total_device.cpp:1073:6:void TotalDevice::start_process()	16	static
-total_device.cpp:1099:6:void TotalDisplay::output_time(uint16_t, uint16_t)	64	static
-total_device.cpp:1120:6:void TotalDevice::reset_timer()	16	static
-total_device.cpp:1129:6:void TotalDevice::stop_process()	16	static
-total_device.cpp:1152:6:void TotalDevice::pause_process()	16	static
-total_device.cpp:1158:6:void TotalDevice::unpause_process()	16	static
-total_device.cpp:1164:6:void TotalDevice::start_vacuum()	24	static
-total_device.cpp:1179:6:void TotalDevice::stop_vacuum()	24	static
-total_device.cpp:1194:9:int16_t TotalDisplay::get_value_to_temper()	16	static
-total_device.cpp:1199:6:void TotalDevice::set_ten_heat(int16_t)	16	static
-total_device.cpp:1211:6:void TotalDevice::start_temper()	16	static
-total_device.cpp:1228:6:void TotalDevice::stop_temper()	16	static
-total_device.cpp:1243:6:void TotalDisplay::update_editable_time()	24	static
-total_device.cpp:1251:6:void TotalDisplay::update_editable_temper()	24	static
-total_device.cpp:1274:6:void TotalDisplay::update_editable_vacuum()	24	static
-total_device.cpp:1281:6:void TotalDisplay::handle_button_press(Buttons_list, std::vector<Widget>&, Display_page)	32	static
-total_device.cpp:1631:6:void TotalDisplay::release_all_buttons_in_vect(std::vector<Widget>&)	40	static
-total_device.cpp:1648:6:void TotalDisplay::i2c_read_touch()	48	static
-total_device.cpp:1683:6:void Widget::set_rectangle_page_0()	48	static
-total_device.cpp:1710:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
-total_device.cpp:1724:6:void Widget::change_image_in_widget(tImage)	48	static
-total_device.cpp:1732:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
-total_device.cpp:1742:6:void test_draw_all()	8	static
-total_device.cpp:1748:6:void sec_handler()	8	static
-total_device.cpp:1766:6:void handle_ms_tick(uint32_t)	16	static
+total_device.cpp:982:6:void TotalDisplay::set_buttons_state()	16	static
+total_device.cpp:991:6:void TotalDisplay::init_displayed_values()	24	static
+total_device.cpp:1008:6:void TotalDisplay::all_pages_write_to_memory()	16	static
+total_device.cpp:1019:6:void TotalDisplay::colon_blink()	16	static
+total_device.cpp:1038:14:Buttons_list TotalDisplay::identify_pressed_btn(uint16_t, uint16_t, std::vector<Widget>)	40	static
+total_device.cpp:1063:17:std::vector<Widget>& TotalDisplay::return_current_page_vect(Display_page)	16	static
+total_device.cpp:1078:9:int16_t TotalDisplay::convert_editable_time_to_int(int16_t, int16_t)	24	static
+total_device.cpp:1085:6:void TotalDisplay::get_values_to_timer()	16	static
+total_device.cpp:1092:10:uint16_t TotalDevice::return_time_in_minutes(uint16_t, uint16_t)	24	static
+total_device.cpp:1099:6:void TotalDevice::start_process()	16	static
+total_device.cpp:1125:6:void TotalDisplay::output_time(uint16_t, uint16_t)	64	static
+total_device.cpp:1146:6:void TotalDevice::reset_timer()	16	static
+total_device.cpp:1155:6:void TotalDevice::stop_process()	16	static
+total_device.cpp:1178:6:void TotalDevice::pause_process()	16	static
+total_device.cpp:1184:6:void TotalDevice::unpause_process()	16	static
+total_device.cpp:1190:6:void TotalDevice::start_vacuum()	24	static
+total_device.cpp:1205:6:void TotalDevice::stop_vacuum()	24	static
+total_device.cpp:1220:9:int16_t TotalDisplay::get_value_to_temper()	16	static
+total_device.cpp:1225:6:void TotalDevice::set_ten_heat(int16_t)	16	static
+total_device.cpp:1237:6:void TotalDevice::start_temper()	16	static
+total_device.cpp:1254:6:void TotalDevice::stop_temper()	16	static
+total_device.cpp:1269:6:void TotalDisplay::update_editable_time()	24	static
+total_device.cpp:1277:6:void TotalDisplay::update_editable_temper()	24	static
+total_device.cpp:1300:6:void TotalDisplay::update_editable_vacuum()	24	static
+total_device.cpp:1307:6:void TotalDisplay::handle_button_press(Buttons_list, std::vector<Widget>&, Display_page)	32	static
+total_device.cpp:1657:6:void TotalDisplay::release_all_buttons_in_vect(std::vector<Widget>&)	40	static
+total_device.cpp:1674:6:void TotalDisplay::i2c_read_touch()	48	static
+total_device.cpp:1709:6:void Widget::set_rectangle_page_0()	48	static
+total_device.cpp:1736:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
+total_device.cpp:1750:6:void Widget::change_image_in_widget(tImage)	48	static
+total_device.cpp:1758:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
+total_device.cpp:1768:6:void test_draw_all()	8	static
+total_device.cpp:1774:6:void sec_handler()	8	static
+total_device.cpp:1792:6:void handle_ms_tick(uint32_t)	16	static
 stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = int]	16	static
 stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
@@ -390,6 +392,6 @@ stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_acc
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = unsigned char; bool _IsMove = true]	32	static
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = tImage; bool _IsMove = true]	32	static
 total_device.cpp:545:7:TotalDevice::~TotalDevice()	16	static
-total_device.cpp:1788:1:void __static_initialization_and_destruction_0(int, int)	16	static
-total_device.cpp:1788:1:cpp)	8	static
-total_device.cpp:1788:1:cpp)	8	static
+total_device.cpp:1814:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_device.cpp:1814:1:cpp)	8	static
+total_device.cpp:1814:1:cpp)	8	static

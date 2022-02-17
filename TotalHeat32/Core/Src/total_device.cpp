@@ -751,11 +751,11 @@ void TotalDisplay::init_widgets_content(void)
     Widget time_edit_number_3 = {NO_BUTTON, 447, EDIT_BACKGR_Y};
     Widget pointing_line = {NO_BUTTON, 177, 432};
     Widget btn_vacuum_start_stop = {VACUUM_START_STOP, 55, 349};
-    Widget btn_vacuum_connect_to_timer = {VACUUM_CONNECT_TO_TMER, 146, 349};
+    Widget btn_vacuum_connect_to_timer = {NO_BUTTON, 146, 349};
     Widget btn_vacuum_increase_0 = {NO_BUTTON, 155 - TRIANGLE_HIDDEN_BTN_AREA, TRIANGLE_UP_COORD_Y};
     Widget btn_vacuum_decrease_0 = {NO_BUTTON, 155 - TRIANGLE_HIDDEN_BTN_AREA, TRIANGLE_DOWN_COORD_Y};
     Widget btn_temper_start_stop = {TEMPER_START_STOP, 251, 349};
-    Widget btn_temper_connect_to_timer = {TEMPER_CONNECT_TO_TIMER, 342, 349};
+    Widget btn_temper_connect_to_timer = {NO_BUTTON, 342, 349};
     Widget btn_temper_increase_0 = {TEMPER_INCREASE_0, 385 - TRIANGLE_HIDDEN_BTN_AREA, TRIANGLE_UP_COORD_Y};
     Widget btn_temper_decrease_0 = {TEMPER_DECREASE_0, 385 - TRIANGLE_HIDDEN_BTN_AREA, TRIANGLE_DOWN_COORD_Y};
     Widget btn_temper_increase_1 = {TEMPER_INCREASE_1, 324 - TRIANGLE_HIDDEN_BTN_AREA, TRIANGLE_UP_COORD_Y};
@@ -824,15 +824,15 @@ void TotalDisplay::init_widgets_content(void)
     time_edit_number_2.add_img_to_wgt(CONSTANT_IMG, img_lttr_hour, HOUR_LTTR_X, HOUR_LTTR_Y);
     time_edit_number_3.add_img_to_wgt(CONSTANT_IMG, img_backgr_nmbr_time);
     time_edit_number_3.add_img_to_wgt(CONSTANT_IMG, img_lttr_hour, HOUR_LTTR_X, HOUR_LTTR_Y);
-    pointing_line.add_img_to_wgt(CONSTANT_IMG, img_pointing_line);
+    //pointing_line.add_img_to_wgt(CONSTANT_IMG, img_pointing_line);
     btn_vacuum_start_stop.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_start_rlsd);
     btn_vacuum_start_stop.add_img_to_wgt(BTN_BLOCKED_IMG, img_btn_vac_temper_start_blocked);
-    btn_vacuum_connect_to_timer.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_cnct_rlsd);
+    //btn_vacuum_connect_to_timer.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_cnct_rlsd);
     //btn_vacuum_increase_0.add_img_to_wgt(BTN_RELEASED_IMG, img_btn_triangle_up);
     //btn_vacuum_decrease_0.add_img_to_wgt(BTN_RELEASED_IMG, img_btn_triangle_down);
     btn_temper_start_stop.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_start_rlsd);
     btn_temper_start_stop.add_img_to_wgt(BTN_BLOCKED_IMG, img_btn_vac_temper_start_blocked);
-    btn_temper_connect_to_timer.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_cnct_rlsd);
+    //btn_temper_connect_to_timer.add_img_to_wgt(CHANGEABLE_IMG, img_btn_vac_temper_cnct_rlsd);
     btn_temper_increase_0.add_img_to_wgt(BTN_RELEASED_IMG, img_btn_triangle_up);
     btn_temper_decrease_0.add_img_to_wgt(BTN_RELEASED_IMG, img_btn_triangle_down);
     btn_temper_increase_1.add_img_to_wgt(BTN_RELEASED_IMG, img_btn_triangle_up);
@@ -979,13 +979,39 @@ void TotalDisplay::set_all_widgets_active(vector<Widget>& vector_to_set_active, 
     }
 }
 
+void TotalDisplay::set_buttons_state(void)
+{
+    start_page[22].unlock_button();
+    start_page[23].lock_button();
+    start_page[24].lock_button();
+    //total_device.connect_vacuum_to_timer();
+    //total_device.connect_temper_to_timer();
+}
+
+void TotalDisplay::init_displayed_values(void)
+{
+    //start_page[37].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, total_device.current_vacuum);
+    start_page[38].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, 0);//Temperature::OVEN_CHAMBER.celsius);
+
+    if (SHOW_TEN_TEMPER)
+    {
+        start_page[55].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, numbers_33_font_vector, 0);//Temperature::OVEN_HEATER.celsius);
+    }
+
+    output_time(total_device.current_hours, total_device.current_minutes);
+
+    // update_editable_vacuum();
+    update_editable_temper();
+    update_editable_time();
+}
+
 void TotalDisplay::all_pages_write_to_memory(void)
 {
     init_widgets_size(start_page);
     draw_all_widgets(start_page);
-    //set_buttons_state();
-    //init_displayed_values();
-    //total_device.stop_temper();
+    set_buttons_state();
+    init_displayed_values();
+    total_device.stop_temper();
 }
 
 bool colon_is_active;
