@@ -26,16 +26,16 @@
 	#define LAYER_PAGE_4		4
 	#define X_SIZE	 			800
 	#define Y_SIZE	 			480
-	#define I2C_TRANSMISSION_INTERVAL_MS    20
+	#define I2C_TRANSMISSION_INTERVAL_MS    200
 	#define WITHIN(N,L,H)       ((N) >= (L) && (N) <= (H))
 	#define TIME_PERSENT_TO_VACUUM      40
 	#define TIME_PERCENT_TO_HEAT        30
 	#define TEN_TEMPERATURE_ADDITION_0  160
 	#define TEN_TEMPERATURE_ADDITION_1  200
 	#define TEN_ADDITION_TRESHOLD       80
-
 	#define MX_DISPLAY_WIDTH  X_SIZE
 	#define MX_DISPLAY_HEIGHT Y_SIZE
+	#define I2C_TIMEOUT					1000
 
 	void TFT_DrawBitmap_d(uint32_t Xpos, uint32_t Ypos, const uint8_t *bitmap, uint16_t width, uint16_t height,  uint8_t layer);
 	void test_output(void);
