@@ -76,9 +76,12 @@ total_device.cpp:1715:6:void Widget::set_rectangle_page_0()	48	static
 total_device.cpp:1742:6:void Widget::tile_area(tImage, uint16_t, uint16_t)	56	static
 total_device.cpp:1756:6:void Widget::change_image_in_widget(tImage)	48	static
 total_device.cpp:1764:6:void Widget::change_image_in_widget(tImage, uint16_t, uint16_t)	56	static
-total_device.cpp:1774:6:void test_draw_all()	8	static
-total_device.cpp:1780:6:void sec_handler()	8	static
-total_device.cpp:1798:6:void handle_ms_tick(uint32_t)	16	static
+total_device.cpp:1771:6:void TotalDevice::update_sensors_data()	16	static
+total_device.cpp:1818:6:void TotalDevice::seconds_timer_handler()	16	static
+total_device.cpp:1862:6:void TotalDevice::minus_one_minute()	16	static
+total_device.cpp:1880:6:void test_draw_all()	8	static
+total_device.cpp:1886:6:void sec_handler()	8	static
+total_device.cpp:1905:6:void handle_ms_tick(uint32_t)	16	static
 stl_vector.h:128:2:std::_Vector_base<_Tp, _Alloc>::_Vector_impl::_Vector_impl() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = int]	16	static
 stl_vector.h:330:7:std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = int; _Alloc = std::allocator<int>]	16	static
@@ -392,6 +395,6 @@ stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_acc
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = unsigned char; bool _IsMove = true]	32	static
 stl_algobase.h:375:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = tImage; bool _IsMove = true]	32	static
 total_device.cpp:547:7:TotalDevice::~TotalDevice()	16	static
-total_device.cpp:1820:1:void __static_initialization_and_destruction_0(int, int)	16	static
-total_device.cpp:1820:1:cpp)	8	static
-total_device.cpp:1820:1:cpp)	8	static
+total_device.cpp:1927:1:void __static_initialization_and_destruction_0(int, int)	16	static
+total_device.cpp:1927:1:cpp)	8	static
+total_device.cpp:1927:1:cpp)	8	static

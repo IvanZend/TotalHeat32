@@ -463,10 +463,10 @@ uint8_t Touch_GT5688::i2c_write_read_register(uint16_t register_address)
 
     convert_16_bit_addr_to_8_bit_register(register_address, tmp_buf_register);
     //i2c_tmp_instance_touch.write(tmp_buf_register, TMP_BUF_REGISTER_SIZE, true);
-    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, 1);
+    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, I2C_TIMEOUT);
     uint8_t tmp_buf_value[1];
     //i2c_tmp_instance_touch.read(tmp_buf_value, 1, false);
-    HAL_I2C_Master_Receive(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_value, 1, 1);
+    HAL_I2C_Master_Receive(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_value, 1, I2C_TIMEOUT);
     return tmp_buf_value[0];
     //return 0;
 }
@@ -480,7 +480,7 @@ void Touch_GT5688::i2c_write_addr_write_register(uint16_t register_address, uint
     convert_16_bit_addr_to_8_bit_register(register_address, tmp_buf_register);
     tmp_buf_register[2] = register_data;
     //i2c_tmp_instance_touch.write(tmp_buf_register, (TMP_BUF_REGISTER_SIZE + 1), true);
-    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, (TMP_BUF_REGISTER_SIZE + 1), 1);
+    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, (TMP_BUF_REGISTER_SIZE + 1), I2C_TIMEOUT);
 }
 
 bool Touch_GT5688::touch_buffer_is_ready(void)
@@ -1768,8 +1768,114 @@ void Widget::change_image_in_widget(tImage image_to_output, uint16_t img_out_coo
     draw_img_vector(changeable_images, wgt_coord_x, wgt_coord_y);                       // отрисовываем изменяемые изображения
 }
 
+void TotalDevice::update_sensors_data(void)
+{
+	/*
+    if (Temperature::OVEN_HEATER.celsius > FAN_TEMPER_TRESHOLD_ON)
+    {
+        WRITE(FAN_1_PIN, HIGH);
+    }
+    else if (Temperature::OVEN_HEATER.celsius < FAN_TEMPER_TRESHOLD_OFF)
+    {
+        WRITE(FAN_1_PIN, LOW);
+    }
+
+    if (SHOW_TEN_TEMPER)
+    {
+        if (Temperature::OVEN_HEATER.celsius != previous_termocouple_heater)
+        {
+            total_device.start_page[55].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, \
+                                                            total_device.numbers_33_font_vector, \
+                                                            Temperature::OVEN_HEATER.celsius);
+            previous_termocouple_heater = Temperature::OVEN_HEATER.celsius;
+        }
+    }
+
+    if (Temperature::OVEN_CHAMBER.celsius != previous_temper_chamber)
+    {
+        total_device.start_page[38].change_value_in_wgt(ALIGN_RIGHT, FONT_33_GAP_PIX, \
+                                                        total_device.numbers_33_font_vector, \
+                                                        Temperature::OVEN_CHAMBER.celsius);
+        previous_temper_chamber = Temperature::OVEN_CHAMBER.celsius;
+    }
+
+    if (temper_started)
+    {
+        if (Temperature::OVEN_CHAMBER.celsius >= main_device.required_temperature)
+        {
+            Temperature::OVEN_HEATER.target = NO_HEAT_DUMMY_VALUE;
+        }
+        else if (Temperature::OVEN_CHAMBER.celsius < (main_device.required_temperature - CHAMBER_TEMPER_HYSTERESIS))
+        {
+
+            set_ten_heat(main_device.required_temperature);
+        }
+    }
+    */
+}
 
 
+void TotalDevice::seconds_timer_handler(void)
+{
+    if (current_stage == PROCESS_STARTED)
+    {
+        global_sec_counter--;
+        if ((global_sec_counter < time_before_start_vacuum) && ( global_sec_counter > time_before_stop_vacuum ))
+        {
+            if (!vacuum_started)
+            {
+                if (vacuum_connected_to_timer)
+                {
+                    start_vacuum();
+                }
+                if (temper_connected_to_timer)
+                {
+                    stop_temper();
+                }
+            }
+        }
+        if (global_sec_counter < time_before_stop_vacuum)
+        {
+            if (vacuum_started)
+            {
+                if (vacuum_connected_to_timer)
+                {
+                    stop_vacuum();
+                }
+                if (temper_connected_to_timer)
+                {
+                    start_temper();
+                }
+            }
+        }
+        total_device.colon_blink();
+        seconds_counter--;
+        if(seconds_counter <= 0)
+        {
+            seconds_counter = 60;
+            minus_one_minute();
+        }
+    }
+    update_sensors_data();
+}
+
+void TotalDevice::minus_one_minute(void)
+{
+    current_minutes--;
+    if (current_minutes < 0)
+    {
+        if (current_hours <= 0)
+        {
+            stop_process();
+        }
+        else
+        {
+            current_minutes = 59;
+            current_hours--;
+        }
+    }
+    total_device.output_time(current_hours, current_minutes);
+}
 
 void test_draw_all(void)
 {
@@ -1781,7 +1887,8 @@ void sec_handler(void)
 {
 	if (total_device.display_initialized)
 	{
-		total_device.colon_blink();
+		//total_device.colon_blink();
+		//total_device.seconds_timer_handler();
 	}
 
 	if (!total_device.display_initialized)
