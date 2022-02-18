@@ -1804,7 +1804,7 @@ void handle_ms_tick(uint32_t ms_ticks_current)
 		if (ms_ticks_counter == 1000)
 		{
 			ms_ticks_counter = 0;
-			//sec_handler();
+			sec_handler();
 		}
 
 		i2c_ms_counter++;
