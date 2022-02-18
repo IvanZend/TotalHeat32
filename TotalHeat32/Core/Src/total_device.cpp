@@ -72,7 +72,7 @@ void TFT_FillScreen(uint32_t color)
 #define PROFILE_WORD_COORD_Y            56
 #define TMP_BUF_REGISTER_SIZE           2
 #define TOUCH_GLITCH_COUNTER            4
-#define I2C_ADDRESS_TOUCH               0x14
+#define I2C_ADDRESS_TOUCH               (0x14 << 1)
 #define I2C_POINT_1_X_LOW_BYTE          0x8150
 #define I2C_POINT_1_X_HIGH_BYTE         0x8151
 #define I2C_POINT_1_Y_LOW_BYTE          0x8152
@@ -463,12 +463,12 @@ uint8_t Touch_GT5688::i2c_write_read_register(uint16_t register_address)
 
     convert_16_bit_addr_to_8_bit_register(register_address, tmp_buf_register);
     //i2c_tmp_instance_touch.write(tmp_buf_register, TMP_BUF_REGISTER_SIZE, true);
-    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)(I2C_ADDRESS_TOUCH << 1), (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, 1);
-    //uint8_t tmp_buf_value[1];
+    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, 1);
+    uint8_t tmp_buf_value[1];
     //i2c_tmp_instance_touch.read(tmp_buf_value, 1, false);
-
-    //return tmp_buf_value[0];
-    return 0;
+    HAL_I2C_Master_Receive(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_value, 1, 1);
+    return tmp_buf_value[0];
+    //return 0;
 }
 
 void Touch_GT5688::i2c_write_addr_write_register(uint16_t register_address, uint8_t register_data)
@@ -480,6 +480,7 @@ void Touch_GT5688::i2c_write_addr_write_register(uint16_t register_address, uint
     convert_16_bit_addr_to_8_bit_register(register_address, tmp_buf_register);
     tmp_buf_register[2] = register_data;
     //i2c_tmp_instance_touch.write(tmp_buf_register, (TMP_BUF_REGISTER_SIZE + 1), true);
+    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, (TMP_BUF_REGISTER_SIZE + 1), 1);
 }
 
 bool Touch_GT5688::touch_buffer_is_ready(void)
@@ -1677,7 +1678,7 @@ void TotalDisplay::i2c_read_touch(void)
     if (touch_buffer_is_ready())
     {
 
-    	/*
+
         TouchPoint current_touch_point;
         current_touch_point.touch_coord_x = i2c_write_read_register(I2C_POINT_1_X_LOW_BYTE);
         current_touch_point.touch_coord_x += (i2c_write_read_register(I2C_POINT_1_X_HIGH_BYTE)) << 8;
@@ -1686,6 +1687,7 @@ void TotalDisplay::i2c_read_touch(void)
 
         //i2c_write_read_register(I2C_POINT_1_SIZE_W);
         //i2c_write_read_register(I2C_POINT_1_SIZE_H);
+
         i2c_write_addr_write_register(I2C_TOUCH_BUFF_STATUS, 0x00);
         if ((current_touch_point.touch_coord_x <= DISPLAY_WIDTH) && (current_touch_point.touch_coord_y <= DISPLAY_HEIGHT))
         {
@@ -1701,8 +1703,6 @@ void TotalDisplay::i2c_read_touch(void)
                 coord_glitch_filter = TOUCH_GLITCH_COUNTER + 1;
             }
         }
-
-        */
     }
     else
     {
