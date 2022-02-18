@@ -26,7 +26,7 @@
 	#define LAYER_PAGE_4		4
 	#define X_SIZE	 			800
 	#define Y_SIZE	 			480
-	#define I2C_TRANSMISSION_INTERVAL_MS    200
+	#define I2C_TRANSMISSION_INTERVAL_MS    20
 	#define WITHIN(N,L,H)       ((N) >= (L) && (N) <= (H))
 	#define TIME_PERSENT_TO_VACUUM      40
 	#define TIME_PERCENT_TO_HEAT        30

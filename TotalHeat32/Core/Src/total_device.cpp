@@ -463,7 +463,7 @@ uint8_t Touch_GT5688::i2c_write_read_register(uint16_t register_address)
 
     convert_16_bit_addr_to_8_bit_register(register_address, tmp_buf_register);
     //i2c_tmp_instance_touch.write(tmp_buf_register, TMP_BUF_REGISTER_SIZE, true);
-    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)I2C_ADDRESS_TOUCH, (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, 10);
+    HAL_I2C_Master_Transmit(&hi2c2, (uint16_t)(I2C_ADDRESS_TOUCH << 1), (uint8_t*)tmp_buf_register, TMP_BUF_REGISTER_SIZE, 1);
     //uint8_t tmp_buf_value[1];
     //i2c_tmp_instance_touch.read(tmp_buf_value, 1, false);
 
